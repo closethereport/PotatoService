@@ -53,16 +53,16 @@ namespace WebApi
             {
                 services.AddSwaggerGen(c =>
                 {
-                    c.SwaggerDoc("S-INFO API", new OpenApiInfo
+                    c.SwaggerDoc("Potato API", new OpenApiInfo
                     {
-                        Version = "3.6.11.1",
-                        Title = "S-INFO API",
-                        Description = "BIM Platform for Large-Scale infrastructure projects",
+                        Version = "123123",
+                        Title = "Potato API",
+                        Description = "123123123",
                         Contact = new OpenApiContact
                         {
-                            Name = "S-INFO",
-                            Email = "support@sinfo.tech",
-                            Url = new Uri("https://sinfo.tech/en")
+                            Name = "Potato",
+                            Email = "213123",
+                            Url = new Uri("123123")
                         }
                     });
 
@@ -73,7 +73,7 @@ namespace WebApi
                         Scheme = "bearer",
                         BearerFormat = "JWT",
                         In = ParameterLocation.Header,
-                        Description = @"Authorization instruction for the S-INFO API:" +
+                        Description = @"Authorization instruction for the Potato API:" +
                                       "\n" +
                                       " 1) Find \"Login\" command in the \"Authentication\" group;\n" +
                                       " 2) In \"Login\" click \"Try it out\" button;\n" +
@@ -157,7 +157,7 @@ namespace WebApi
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/S-INFO API/swagger.json", "S-INFO API");
+                c.SwaggerEndpoint("/swagger/Potato API/swagger.json", "Potato API");
                 c.RoutePrefix = string.Empty;
             });
 
