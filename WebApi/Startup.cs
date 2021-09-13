@@ -55,14 +55,13 @@ namespace WebApi
                 {
                     c.SwaggerDoc("Potato API", new OpenApiInfo
                     {
-                        Version = "123123",
+                        Version = "1.0",
                         Title = "Potato API",
-                        Description = "123123123",
+                        Description = "очень классный апи",
                         Contact = new OpenApiContact
                         {
                             Name = "Potato",
-                            Email = "213123",
-                            Url = new Uri("123123")
+                            Email = "nelunull@gmail.com"
                         }
                     });
 
