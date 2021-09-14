@@ -9,7 +9,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using WebApi.Helpers;
@@ -28,28 +27,21 @@ namespace WebApi
             _configuration = configuration;
         }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // use sql server db in production and sqlite db in development
-            
             services.AddDbContext<DataContext>();
 
             services.AddCors();
             services.AddControllers();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-            // configure strongly typed settings objects
             var appSettingsSection = _configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingsSection);
-
-            // configure jwt authentication
             var appSettings = appSettingsSection.Get<AppSettings>();
             var key = Encoding.ASCII.GetBytes(appSettings.Secret);
 
 
             // Register the Swagger generator
-
             {
                 services.AddSwaggerGen(c =>
                 {
@@ -57,10 +49,10 @@ namespace WebApi
                     {
                         Version = "1.0",
                         Title = "Potato API",
-                        Description = "очень классный апи",
+                        Description = "бекенд",
                         Contact = new OpenApiContact
                         {
-                            Name = "Potato",
+                            Name = "Egor",
                             Email = "nelunull@gmail.com"
                         }
                     });
@@ -119,7 +111,6 @@ namespace WebApi
                             var userId = int.Parse(context.Principal.Identity.Name);
                             var user = userService.GetById(userId);
                             if (user == null)
-                                // return unauthorized if user no longer exists
                                 context.Fail("Unauthorized");
                             return Task.CompletedTask;
                         }
@@ -135,31 +126,23 @@ namespace WebApi
                     };
                 });
 
-            // configure DI for application services
             services.AddScoped<IUserService, UserService>();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, DataContext dataContext)
         {
-            // migrate any database changes on startup (includes initial db creation)
             dataContext.Database.Migrate();
-
             app.UseRouting();
-
             app.UseCors(builder => builder
                 .AllowAnyOrigin()
                 .AllowAnyMethod()
                 .AllowAnyHeader());
-
-
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/Potato API/swagger.json", "Potato API");
                 c.RoutePrefix = string.Empty;
             });
-
 
             app.UseAuthentication();
             app.UseAuthorization();
