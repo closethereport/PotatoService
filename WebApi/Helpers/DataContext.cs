@@ -1,6 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Configuration;
 using WebApi.Entities;
 using WebApi.Services;
@@ -22,7 +20,6 @@ namespace WebApi.Helpers
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            
             //modelBuilder.Entity<User>(entity =>
             //{
             //    entity.ToTable("Users", "security");
@@ -36,9 +33,9 @@ namespace WebApi.Helpers
             modelBuilder.Entity<User>().HasData(new User
             {
                 Id = 1,
-                Login = "admin", 
+                Login = "admin",
                 PasswordHash = passwordHash,
-                PasswordSalt = passwordSalt,
+                PasswordSalt = passwordSalt
             });
 
             base.OnModelCreating(modelBuilder);

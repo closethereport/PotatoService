@@ -1,5 +1,3 @@
-using System.ComponentModel.DataAnnotations;
-
 namespace WebApi.Dto.Users
 {
     public class UserDto
