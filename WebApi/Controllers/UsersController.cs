@@ -8,9 +8,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using WebApi.Dto.Users;
 using WebApi.Entities;
 using WebApi.Helpers;
-using WebApi.Models.Users;
 using WebApi.Services;
 
 namespace WebApi.Controllers
@@ -36,12 +36,12 @@ namespace WebApi.Controllers
 
         [AllowAnonymous]
         [HttpPost("login")]
-        public IActionResult Authenticate([FromBody] AuthenticateModel model)
+        public IActionResult Authenticate([FromBody] LoginInDto model)
         {
-            var user = _userService.Authenticate(model.Username, model.Password);
+            var user = _userService.Authenticate(model.Login, model.Password);
 
             if (user == null)
-                return BadRequest(new {message = "Username or password is incorrect"});
+                return BadRequest(new {message = "Login or password is incorrect"});
 
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
@@ -62,24 +62,22 @@ namespace WebApi.Controllers
             return Ok(new
             {
                 user.Id,
-                user.Username,
-                user.FirstName,
-                user.LastName,
+                Username = user.Login,
                 Token = tokenString
             });
         }
 
         [AllowAnonymous]
         [HttpPost("register")]
-        public IActionResult Register([FromBody] RegisterModel model)
+        public IActionResult Register([FromBody] RegisterDto dto)
         {
-            // map model to entity
-            var user = _mapper.Map<User>(model);
+            // map dto to entity
+            var user = _mapper.Map<User>(dto);
 
             try
             {
                 // create user
-                _userService.Create(user, model.Password);
+                _userService.Create(user, dto.Password);
                 return Ok();
             }
             catch (AppException ex)
@@ -93,7 +91,7 @@ namespace WebApi.Controllers
         public IActionResult GetAll()
         {
             var users = _userService.GetAll();
-            var model = _mapper.Map<IList<UserModel>>(users);
+            var model = _mapper.Map<IList<UserDto>>(users);
             return Ok(model);
         }
 
@@ -101,16 +99,15 @@ namespace WebApi.Controllers
         public IActionResult GetById(int id)
         {
             var user = _userService.GetById(id);
-            var model = _mapper.Map<UserModel>(user);
+            var model = _mapper.Map<UserDto>(user);
             return Ok(model);
         }
 
-        [HttpPut("{id}")]
-        public IActionResult Update(int id, [FromBody] UpdateModel model)
+        [HttpPut]
+        public IActionResult Update([FromBody] UserDto model)
         {
-            // map model to entity and set id
+            // map dto to entity and set id
             var user = _mapper.Map<User>(model);
-            user.Id = id;
 
             try
             {
