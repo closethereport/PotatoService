@@ -1,7 +1,4 @@
-<template>
-    
-</template>
-
+<template></template>
 
 <script lang="ts">
 import aboutPage from './aboutPage';

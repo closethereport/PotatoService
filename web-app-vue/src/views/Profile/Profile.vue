@@ -1,8 +1,8 @@
 <template></template>
 
 <script lang="ts">
-import registerPage from './registerPage';
-export default registerPage;
+import profile from './profile';
+export default profile;
 </script>
 
 <style lang="scss" scoped></style>
