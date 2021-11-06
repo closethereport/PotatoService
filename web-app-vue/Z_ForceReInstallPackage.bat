@@ -1,9 +1,8 @@
 @ECHO OFF
 ECHO S_INFO
-ECHO WAIT (search outdated)
-call npm outdated
-rd /s node_modules
-del /P package-lock.json
+ECHO WAIT
+rd /s /Q node_modules
+del package-lock.json /Q
 call npm install
 call npm cache verify
 ECHO DONE!
