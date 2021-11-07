@@ -28,6 +28,22 @@ export default defineComponent({
             this.$router.push('/');
           },
         },
+        {
+          label: 'Наша команда',
+          icon: 'pi pi-users',
+          to: '/',
+          command: () => {
+            this.$router.push('/');
+          },
+        },
+        {
+          label: 'Контакты',
+          icon: 'pi pi-phone',
+          to: '/',
+          command: () => {
+            this.$router.push('/');
+          },
+        },
       ],
     };
   },

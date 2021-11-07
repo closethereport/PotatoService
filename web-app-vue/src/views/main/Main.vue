@@ -1,7 +1,6 @@
 <template>
   <div style="background: #22223b" class="d-flex">
-    <img alt="logo" src="@/assets/img/logo.png" height="64" class="p-mr-2" />
-    <div class="d-flex ml-auto">
+    <div class="d-flex m-auto">
       <Menubar :model="items">
         <template #item="{ item }">
           <Button
