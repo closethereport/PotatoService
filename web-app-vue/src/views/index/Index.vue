@@ -68,8 +68,8 @@
 </template>
 
 <script lang="ts">
-import Main from './index';
-export default Main;
+import Index from './index';
+export default Index;
 </script>
 
 <style lang="scss" scoped>

@@ -31,9 +31,9 @@ export default defineComponent({
         {
           label: 'Наша команда',
           icon: 'pi pi-users',
-          to: '/',
+          to: '/team',
           command: () => {
-            this.$router.push('/');
+            this.$router.push('/team');
           },
         },
         {
