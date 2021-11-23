@@ -23,9 +23,9 @@ export default defineComponent({
         {
           label: 'Авторизация',
           icon: 'pi pi-sign-in',
-          to: '/',
+          to: '/login',
           command: () => {
-            this.$router.push('/');
+            this.$router.push('/login');
           },
         },
         {
