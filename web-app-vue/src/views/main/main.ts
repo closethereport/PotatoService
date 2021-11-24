@@ -44,6 +44,14 @@ export default defineComponent({
             this.$router.push('/');
           },
         },
+        {
+          label: 'Профиль',
+          icon: 'pi pi-phone',
+          to: '/profile',
+          command: () => {
+            this.$router.push('/profile');
+          },
+        },
       ],
     };
   },
