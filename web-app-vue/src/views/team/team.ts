@@ -2,27 +2,16 @@ import { defineComponent } from 'vue';
 export default defineComponent({
   data() {
     return {
-      github: [
-        {
-          Name: 'Nelu',
-          LinkNeluQi: 'https://github.com/NeluQi',
-        },
-        {
-          Name: 'Clayers',
-          Linkclosethereport: 'https://github.com/closethereport',
-        },
-        {
-          Name: 'closethereport',
-          LinkClayers: 'https://github.com/Clayers',
-        },
-      ],
+      LinkClayers: 'https://github.com/Clayers',
+      LinkClosethereport: 'https://github.com/closethereport',
+      LinkNelu: 'https://github.com/NeluQi',
     };
   },
   components: {},
   computed: {},
   methods: {
     redirectTo(url) {
-      window.location.href = url;
+      window.open(url, '_blank');
     },
   },
 });

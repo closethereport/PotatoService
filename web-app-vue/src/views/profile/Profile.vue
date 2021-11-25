@@ -28,7 +28,7 @@
         src="http://svgur.com/i/bph.svg"
         alt="Image"
         class="md:ml-auto block md:h-full"
-        style="clip-path: polygon(8% 12%, 100% 7%, 100% 100%, 0 100%)"
+        style="clip-path: polygon(8% 12%, 100% 7%, 100% 100%, 0 100%); width: 90%"
       />
     </div>
   </div>

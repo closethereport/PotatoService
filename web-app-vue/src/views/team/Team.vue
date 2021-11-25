@@ -5,58 +5,36 @@
         <div class="text-white font-bold text-5xl mb-3">Наша команда</div>
       </div>
     </div>
-    <div class="div-padding d-flex justify-content-center">
-      <div class="col col-padding">
-        <div class="card h-100 card-pading">
+    <div class="d-flex justify-content-center">
+      <div class="d-flex flex-wrap g-4">
+        <div class="card card-pading" style="width: 18rem; margin: 1rem">
           <img src="https://avatars.githubusercontent.com/u/16963395?v=4" class="card-img-top img-border" alt="..." />
           <div class="card-body">
-            <h5 class="text-4xl card-title text-heder-style">Nelu</h5>
+            <h class="text-3xl card-title font-bold text-heder-style">Nelu</h>
           </div>
           <div class="d-flex justify-content-center">
-            <Button
-              label="GitHub"
-              icon="pi pi-github"
-              class="div-button"
-              style="margin-left: 1.5rem"
-              @click="redirectTo('https://github.com/NeluQi')"
-            />
-            <Button label="Google" icon="pi pi-google" class="div-button" style="margin-right: 1.5rem" />
+            <Button label="GitHub" icon="pi pi-github" class="div-button" style="margin: 5px" @click="redirectTo(LinkNelu)" />
+            <Button label="Google" icon="pi pi-google" class="div-button" style="margin: 5px" />
           </div>
         </div>
-      </div>
-      <div class="col col-padding">
-        <div class="card h-100 card-pading">
+        <div class="card card-pading" style="width: 18rem; margin: 1rem">
           <img src="https://avatars.githubusercontent.com/u/44950920?v=4" class="card-img-top img-border" alt="..." />
           <div class="card-body">
-            <h5 class="text-4xl card-title text-heder-style">Closethereport</h5>
+            <h class="text-3xl card-title font-bold text-heder-style">Closethereport</h>
           </div>
           <div class="d-flex justify-content-center">
-            <Button
-              label="GitHub"
-              icon="pi pi-github"
-              class="div-button"
-              style="margin-left: 1.5rem"
-              @click="redirectTo('https://github.com/closethereport')"
-            />
-            <Button label="Google" icon="pi pi-google" class="div-button" style="margin-right: 1.5rem" />
+            <Button label="GitHub" icon="pi pi-github" class="div-button" style="margin: 5px" @click="redirectTo(LinkClosethereport)" />
+            <Button label="Google" icon="pi pi-google" class="div-button" style="margin: 5px" />
           </div>
         </div>
-      </div>
-      <div class="col col-padding">
-        <div class="card h-100 card-pading">
+        <div class="card card-pading" style="width: 18rem; margin: 1rem">
           <img src="https://avatars.githubusercontent.com/u/60391902?v=4" class="card-img-top img-border" alt="..." />
           <div class="card-body">
-            <h5 class="text-5xl card-title text-heder-style">Clay</h5>
+            <h class="text-4xl card-title font-bold text-heder-style">Clay</h>
           </div>
           <div class="d-flex justify-content-center">
-            <Button
-              label="GitHub"
-              icon="pi pi-github"
-              class="div-button"
-              style="margin-left: 1.5rem"
-              @click="redirectTo('https://github.com/Clayers')"
-            />
-            <Button label="Google" icon="pi pi-google" class="div-button" style="margin-right: 1.5rem" />
+            <Button label="GitHub" icon="pi pi-github" class="div-button" style="margin: 5px" @click="redirectTo(LinkClayers)" />
+            <Button label="Google" icon="pi pi-google" class="div-button" style="margin: 5px" />
           </div>
         </div>
       </div>
@@ -83,7 +61,7 @@ export default Team;
 }
 .div-button {
   margin: 1rem;
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
   border-radius: 20px;
   background: #22223b;
   border: none;
@@ -92,7 +70,6 @@ export default Team;
   margin: 1rem;
 }
 .card-pading {
-  width: 95%;
   border: none;
   border-radius: 20px;
 }
@@ -103,7 +80,6 @@ export default Team;
   color: #2196f3;
   padding-top: 0.5rem;
   padding-left: 0.75rem;
-  padding-bottom: 1.5rem;
 }
 
 ::v-deep() {
