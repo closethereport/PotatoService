@@ -6,12 +6,40 @@
         <div class="p-6">
           <span class="block text-3xl font-bold mb-0">Логин: {{ Login }}</span>
           <span class="block text-3xl font-bold mb-0">Email: {{ Email }}</span>
-          <span class="block text-3xl font-bold mb-0">Имя: {{ Name }}</span>
-          <span class="block text-3xl font-bold mb-0">Фамилия: {{ Surname }}</span>
-          <span class="block text-3xl font-bold mb-0">Отчество: {{ Patronymic }}</span>
-          <span class="block text-3xl font-bold mb-0">Группа: {{ Group }}</span>
-          <span class="block text-3xl font-bold mb-0">Курс: {{ Course }}</span>
-          <span class="block text-3xl font-bold mb-0">Специаальность: {{ Specialization }}</span>
+          <div class="flex">
+            <span class="block text-3xl font-bold mb-0">Имя: </span>
+            <InputText type="text" style="width: 100%; margin: 1px" v-model="Name" />
+          </div>
+          <div class="flex">
+            <span class="block text-3xl font-bold mb-0">Фамилия: </span>
+            <InputText type="text" style="width: 100%; margin: 1px" v-model="Surname" />
+          </div>
+          <div class="flex">
+            <span class="block text-3xl font-bold mb-0">Отчество: </span>
+            <InputText type="text" style="width: 100%; margin: 1px" v-model="Patronymic" />
+          </div>
+          <div class="flex">
+            <span class="block text-3xl font-bold mb-0">Группа: </span>
+            <InputText type="text" style="width: 100%; margin: 1px" v-model="Group" />
+          </div>
+          <div class="flex">
+            <span class="block text-3xl font-bold mb-0">Курс: </span>
+            <Dropdown
+              style="width: 100%; margin: 1px"
+              v-model="selectcourse"
+              :options="Courses"
+              optionLabel="Course"
+              optionValue="code"
+              placeholder="Select Course"
+            />
+          </div>
+          <div class="flex">
+            <span class="block text-3xl font-bold mb-0">Специаальность: </span>
+            <InputText type="text" style="width: 100%; margin: 1px" v-model="Group" />
+          </div>
+          <div class="d-flex flex-row-reverse" style="margin-top: 2rem">
+            <Button label="Сохранить" class="p-button-outlined" style="color: #22223b" />
+          </div>
         </div>
         <div class="text-4xl text-primary font-bold mb-0" style="padding-left: 3rem">Предметы:</div>
         <div class="hex" style="padding: none">
