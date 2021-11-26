@@ -1,8 +1,27 @@
+import Authorization from '@/helpers/authorization-helper';
+import { mapGettersRoot } from '@/helpers/typedMappers.helper';
+import { Getters, GettersTypes } from '@/store/getters';
 import { defineComponent } from 'vue';
 export default defineComponent({
   data() {
     return {
-      items: [
+      items: [] as any[],
+    };
+  },
+  mounted() {
+    this.createMenu();
+  },
+  computed: {
+    ...mapGettersRoot<GettersTypes>()([Getters.isAuthenticated]),
+  },
+  watch: {
+    isAuthenticated() {
+      this.createMenu();
+    },
+  },
+  methods: {
+    createMenu() {
+      this.items = [
         {
           label: 'Главная',
           icon: 'pi pi-home',
@@ -18,14 +37,6 @@ export default defineComponent({
           to: '/',
           command: () => {
             this.$router.push('/');
-          },
-        },
-        {
-          label: 'Авторизация',
-          icon: 'pi pi-sign-in',
-          to: '/login',
-          command: () => {
-            this.$router.push('/login');
           },
         },
         {
@@ -52,10 +63,25 @@ export default defineComponent({
             this.$router.push('/profile');
           },
         },
-      ],
-    };
+        {
+          hidden: this.isAuthenticated,
+          label: 'Авторизация',
+          icon: 'pi pi-sign-in',
+          to: '/login',
+          command: () => {
+            this.$router.push('/login');
+          },
+        },
+        {
+          hidden: !this.isAuthenticated,
+          label: 'Выход',
+          icon: 'pi  pi-sign-out',
+          to: '/',
+          command: () => {
+            Authorization.logout();
+          },
+        },
+      ];
+    },
   },
-  components: {},
-  computed: {},
-  methods: {},
 });

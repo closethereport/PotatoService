@@ -29,6 +29,7 @@ const mutations: MutationTree<IRootState> & Mutations = {
     localStorage.clear();
     sessionStorage.clear();
     location.reload();
+    //TODO: сделать нормально. Нам хватит обычного пуша, тк страниц не много
   },
   [MutationTypes.SET_CURRENT_USER](state: IRootState, data: { user: UserDto; isSession: false }) {
     const setUser = JSON.stringify(data.user);
