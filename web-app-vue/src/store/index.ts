@@ -1,8 +1,7 @@
-import { ActionTree, createLogger, createStore, GetterTree, MutationTree } from 'vuex';
-import { Mutations, MutationTypes } from './mutations';
-import Api from '@/client-api/api';
 import { UserDto } from '@/interfaces/swagger/userDto';
+import { createStore, GetterTree, MutationTree } from 'vuex';
 import { Getters, GettersTypes } from './getters';
+import { Mutations, MutationTypes } from './mutations';
 import { storeModules } from './store-manager/store.modules';
 
 export interface IRootState {

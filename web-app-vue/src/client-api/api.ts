@@ -4,6 +4,9 @@ import Cookies from '@/helpers/cookies';
 import ApiRequestResult from '@/interfaces/local-Interfaces/api-request-result';
 import axios, { AxiosError, AxiosInstance } from 'axios';
 
+//Wrapper for backend requests
+//Note that the wrapper returns an ApiRequestResult, not the DTO itself
+
 export default class Api {
   private static currentInstance: Api;
   private httpClient: AxiosInstance = null as any;
@@ -49,6 +52,7 @@ export default class Api {
     const date = new Date();
     this.httpClient!.defaults!.headers!['Timezone'] = (-date.getTimezoneOffset() / 60).toString();
   }
+
   getAsync<T>(url: string, config?: any): Promise<ApiRequestResult<T>> {
     return this.httpClient.get(url, config).then(
       (result) => {

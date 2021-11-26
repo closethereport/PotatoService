@@ -8,6 +8,7 @@ export default class Authorization {
     const token = currentUser.token as string;
     return token;
   } */
+
   static logout(): void {
     store.commit(MutationTypes.LOGOUT);
   }

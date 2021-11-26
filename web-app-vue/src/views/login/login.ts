@@ -11,6 +11,7 @@ import { required } from '@vuelidate/validators';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
+  //Для проверки полей логина (пустые и тд)
   validations() {
     return {
       login: {
@@ -23,15 +24,16 @@ export default defineComponent({
   },
   data() {
     return {
-      v$: useVuelidate(),
+      v$: useVuelidate(), //валидация полей по правилиам выше
       login: '',
       password: '',
-      isRememberMe: false,
-      messages: [] as any[],
-      loginButton: true,
+      isRememberMe: false, //запоминать ли логин
+      messages: [] as any[], //сообщения пользователю об ошибке
+      loginButton: true, //включена ли кнопка кнопка авторизации TODO: переименовать нормально
     };
   },
   methods: {
+    //мапинг методов из стора (в сторе методы для работы с api)
     ...mapActionsNamespaced<UsersActionType>()(storeModule.Users, [UsersAction.login]),
 
     handleSubmit(isFormValid): void {
@@ -41,10 +43,12 @@ export default defineComponent({
 
       this.loginIn();
     },
+    //атворизация
     loginIn(): void {
       const component = this;
       this.hideAlert();
       component.loginButton = false;
+      //отправка запроса к сервера на авторизацию
       this.authorization({
         login: component.login,
         password: component.password,
@@ -52,11 +56,14 @@ export default defineComponent({
         this.processLoginResult({ data, status });
       });
     },
+    //обработка ответа от сервера
     processLoginResult({ data, status }: { data: any | UserDto; status: number }): void {
       if (status != 200) {
+        //если статус код ответа хуеый - выводим сообщение пользователю
         this.showAlert(data.message ?? data);
         this.loginButton = true;
       } else {
+        //все гуд, авторизация прошла
         const user = data as UserDto;
         this.hideAlert();
         const dateExpire = new Date();
@@ -76,6 +83,7 @@ export default defineComponent({
     },
   },
   mounted() {
+    //сообщение об ошибки можно передать через сторр с других страниц
     const loginMessage: string | null = Cookies.get('login-message');
     if (loginMessage != null) {
       this.messages.push({ severity: 'error', content: loginMessage, id: 1 });
