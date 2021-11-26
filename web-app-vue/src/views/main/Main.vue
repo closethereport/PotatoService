@@ -4,6 +4,7 @@
       <Menubar :model="items">
         <template #item="{ item }">
           <Button
+            v-show="!item.hidden"
             :disabled="item.disabled"
             v-if="item.command"
             :class="{ 'btn-menu-activ': $route.path === item.to }"
