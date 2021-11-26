@@ -23,9 +23,9 @@ export default defineComponent({
         {
           label: 'Авторизация',
           icon: 'pi pi-sign-in',
-          to: '/',
+          to: '/login',
           command: () => {
-            this.$router.push('/');
+            this.$router.push('/login');
           },
         },
         {
@@ -42,6 +42,14 @@ export default defineComponent({
           to: '/',
           command: () => {
             this.$router.push('/');
+          },
+        },
+        {
+          label: 'Профиль',
+          icon: 'pi pi-phone',
+          to: '/profile',
+          command: () => {
+            this.$router.push('/profile');
           },
         },
       ],
