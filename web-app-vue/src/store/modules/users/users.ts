@@ -1,4 +1,5 @@
 import Api from '@/client-api/api';
+import { LoginInDto } from '@/interfaces/swagger/loginInDto';
 import { UserDto } from '@/interfaces/swagger/userDto';
 import { IRootState } from '@/store';
 import { ActionTree, GetterTree, Module, MutationTree } from 'vuex';
@@ -15,8 +16,12 @@ const getters: GetterTree<IStateUsersTypes, IRootState> & UsersGettersTypes = {}
 const mutations: MutationTree<IStateUsersTypes> & UsersMutationTypes = {};
 
 const actions: ActionTree<IStateUsersTypes, IRootState> = {
+  [UsersAction.login]({ state: IStateUsersTypes }, data: LoginInDto) {
+    const route = `/Users/login`;
+    return Api.instance.postAsync<UserDto>(route, data);
+  },
   [UsersAction.get_users]({ state: IStateUsersTypes }) {
-    const route = `/Users//Users`;
+    const route = `/Users/Users`;
     return Api.instance.getAsync<UserDto[]>(route);
   },
 };
