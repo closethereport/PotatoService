@@ -6,11 +6,13 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "reinstall": "Z_ForceReInstallPackage.bat",
+    "swagger:update": "Z_Update_Swagger.bat",
     "lint": "vue-cli-service lint",
     "prettier": "npx prettier src --check",
     "format": "npm run prettier -- --write"
   },
   "dependencies": {
+    "axios": "^0.24.0",
     "bootstrap": "^5.1.3",
     "chart.js": "^3.6.0",
     "particles.vue3": "^1.20.4",
