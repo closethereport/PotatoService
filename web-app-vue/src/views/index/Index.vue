@@ -58,7 +58,7 @@
     </div>
     <div class="col-12 md:col-6 overflow-hidden">
       <img
-        src="http://svgur.com/i/bph.svg"
+        src="@//assets/img/potato/potato.svg"
         alt="Image"
         class="md:ml-auto block md:h-full"
         style="clip-path: polygon(8% 12%, 100% 7%, 100% 100%, 0 100%)"
