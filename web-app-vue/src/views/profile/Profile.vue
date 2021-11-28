@@ -1,29 +1,29 @@
 <template>
-  <div class="grid grid-nogutter surface-section">
-    <div class="md:col-5 text-center md:text-left flex">
-      <section>
+  <div class="container">
+    <div class="row d-flex justify-content-center">
+      <div class="col">
         <p class="block text-6xl p-6 text-primary font-bold mb-0" style="margin-bottom: 4rem">Профиль</p>
         <div class="p-6">
-          <span class="block text-3xl font-bold mb-0">Логин: {{ Login }}</span>
-          <span class="block text-3xl font-bold mb-0">Email: {{ Email }}</span>
+          <label class="block font-bold mb-0 fs-5">Логин: {{ Login }}</label>
+          <label class="block font-bold mb-0 fs-5">Email: {{ Email }}</label>
           <div class="flex">
-            <span class="block text-3xl font-bold mb-0">Имя: </span>
+            <label class="block font-bold mb-0 fs-5">Имя: </label>
             <InputText type="text" style="width: 100%; margin: 2px" v-model="Name" />
           </div>
           <div class="flex">
-            <span class="block text-3xl font-bold mb-0">Фамилия: </span>
+            <label class="block font-bold mb-0 fs-5">Фамилия: </label>
             <InputText type="text" style="width: 100%; margin: 2px" v-model="Surname" />
           </div>
           <div class="flex">
-            <span class="block text-3xl font-bold mb-0">Отчество: </span>
+            <label class="block font-bold mb-0 fs-5">Отчество: </label>
             <InputText type="text" style="width: 100%; margin: 2px" v-model="Patronymic" />
           </div>
           <div class="flex">
-            <span class="block text-3xl font-bold mb-0">Группа: </span>
+            <label class="block font-bold mb-0 fs-5">Группа: </label>
             <InputText type="text" style="width: 100%; margin: 2px" v-model="Group" />
           </div>
           <div class="flex">
-            <span class="block text-3xl font-bold mb-0">Курс: </span>
+            <label class="block font-bold mb-0 fs-5">Курс: </label>
             <Dropdown
               style="width: 100%; margin: 2px"
               v-model="selectcourse"
@@ -34,17 +34,19 @@
             />
           </div>
           <div class="flex-grid">
-            <span class="block text-3xl font-bold mb-0">Специаальность: </span>
-            <InputText type="text" style="width: 100%; margin: 2px" v-model="Specialization" />
+            <label class="block font-bold mb-0 fs-5">Специаальность: </label>
+            <InputText type="text" style="width: 100%; margin: 2px; margin-left: 0px" v-model="Specialization" />
           </div>
           <div class="d-flex flex-row-reverse" style="margin-top: 2rem">
             <Button label="Сохранить" class="p-button-outlined" style="color: #22223b" />
           </div>
         </div>
-      </section>
-    </div>
-    <div class="col-12 md:col-6 overflow-hidden" style="padding-left: 1rem; margin-left: 3rem; margin-top: none">
-      <img src="@//assets/img/potato/potato2.svg" alt="Image" class="md:ml-auto block md:h-full" style="width: 50%" />
+      </div>
+      <div class="col">
+        <div class="align-self-center">
+          <img src="@//assets/img/potato/potato-and-monoculars.jpg" alt="Image" class="" style="width: 90%; height: auto" />
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -59,9 +61,5 @@ export default Profile;
   margin-top: 1rem;
   -webkit-clip-path: polygon(0% 0%, 95% 0%, 100% 20%, 100% 100%, 0% 100%);
   flex-button: auto;
-}
-.grid {
-  display: flex;
-  flex-wrap: none;
 }
 </style>

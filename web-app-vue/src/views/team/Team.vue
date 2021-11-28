@@ -6,7 +6,7 @@
       </div>
     </div>
     <div class="d-flex justify-content-center">
-      <div class="d-flex flex-wrap g-4">
+      <div class="d-flex flex-wrap">
         <div class="card card-pading" style="width: 18rem; margin: 1rem">
           <img src="@/assets/img/github/Nelu.jpg" class="card-img-top img-border" alt="..." />
           <div class="card-body">
