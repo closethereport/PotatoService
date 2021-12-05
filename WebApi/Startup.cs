@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -89,9 +91,9 @@ namespace WebApi
                         }
                     });
 
-                    //var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                    //var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                    //c.IncludeXmlComments(xmlPath);
+                    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                    c.IncludeXmlComments(xmlPath);
                 });
             }
 

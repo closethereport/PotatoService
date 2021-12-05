@@ -20,13 +20,13 @@ namespace WebApi.Helpers
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<User>(entity =>
-            //{
-            //    entity.ToTable("Users", "security");
-            //    entity.Property(e => e.Id)
-            //        .HasColumnName("id")
-            //        .ValueGeneratedOnAdd();
-            //});
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.ToTable("Users", "security");
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .ValueGeneratedOnAdd();
+            });
 
             byte[] passwordHash, passwordSalt;
             UserService.CreatePasswordHash("admin", out passwordHash, out passwordSalt);
