@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-export interface RegisterDto { 
-    login: string;
-    password: string;
-    email?: string;
+export interface RegisterDto {
+  login: string;
+  password: string;
+  email?: string;
 }

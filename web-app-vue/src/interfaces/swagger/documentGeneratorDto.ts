@@ -11,7 +11,7 @@
  */
 import { TemplateInfoDto } from './templateInfoDto';
 
-export interface DocumentGeneratorDto { 
-    userFullName?: string;
-    templateInfo?: TemplateInfoDto;
+export interface DocumentGeneratorDto {
+  userFullName?: string;
+  templateInfo?: TemplateInfoDto;
 }

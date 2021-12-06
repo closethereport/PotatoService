@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-export interface UserDto { 
-    id?: number;
-    fullName?: string;
-    login?: string;
-    password?: string;
-    email?: string;
+export interface UserDto {
+  id?: number;
+  fullName?: string;
+  login?: string;
+  password?: string;
+  email?: string;
 }
