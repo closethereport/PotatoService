@@ -1,31 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.IdentityModel.Tokens.Jwt;
+﻿using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Net;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
 using AutoMapper;
-using DocumentFormat.OpenXml;
-using DocumentFormat.OpenXml.Packaging;
-
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Validations;
-using Swashbuckle.AspNetCore.Annotations;
 using WebApi.Dto.DocumentGenerator;
-using WebApi.Dto.Template;
-using WebApi.Dto.Users;
-using WebApi.Entities;
 using WebApi.Helpers;
-using WebApi.Services;
 using Wordroller;
 
 namespace WebApi.Controllers
@@ -45,7 +25,7 @@ namespace WebApi.Controllers
 
 
         /// <remarks>
-        /// Генерация документа
+        ///     Генерация документа
         /// </remarks>
         [AllowAnonymous]
         [HttpPost("Generate")]
@@ -73,9 +53,9 @@ namespace WebApi.Controllers
 
                     var fs = new MemoryStream();
                     document.Save(fs);
-                    byte[] file = fs.ToArray();
-                    string file_type = "application/pdf";
-                    string file_name = $"{dto.UserFullName}_{dto.TemplateInfo.LessonName}.docx";
+                    var file = fs.ToArray();
+                    var file_type = "application/pdf";
+                    var file_name = $"{dto.UserFullName}_{dto.TemplateInfo.LessonName}.docx";
                     return File(file, file_type, file_name);
                 }
             }
@@ -84,9 +64,5 @@ namespace WebApi.Controllers
                 return BadRequest(ex.Message);
             }
         }
-
-     
-
-        
     }
 }

@@ -13,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json;
 using WebApi.Helpers;
 using WebApi.Services;
 
@@ -45,7 +46,7 @@ namespace WebApi
 
             services.AddControllersWithViews()
                 .AddNewtonsoftJson(options =>
-                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore
                 );
 
             // Register the Swagger generator
@@ -54,9 +55,9 @@ namespace WebApi
                 {
                     c.SwaggerDoc("Potato API", new OpenApiInfo
                     {
-                        Version = "1.0",
+                        Version = "1.1",
                         Title = "Potato API",
-                        Description = "бекенд",
+                        Description = "Service for generating title pages",
                         Contact = new OpenApiContact
                         {
                             Name = "Egor",

@@ -39,14 +39,14 @@ namespace WebApi.Controllers
         }
 
         /// <remarks>
-        /// Войти в систему.
+        ///     Войти в систему.
         /// </remarks>
         [AllowAnonymous]
         [Route("Login")]
         [HttpPost]
         [ProducesResponseType(typeof(LoginOutDto), StatusCodes.Status200OK)]
-        [SwaggerResponse((int)HttpStatusCode.OK, "Authorized user", typeof(LoginOutDto))]
-        [SwaggerResponse((int)HttpStatusCode.BadRequest, Type = typeof(string))]
+        [SwaggerResponse((int) HttpStatusCode.OK, "Authorized user", typeof(LoginOutDto))]
+        [SwaggerResponse((int) HttpStatusCode.BadRequest, Type = typeof(string))]
         public async Task<ObjectResult> Authenticate([FromBody] LoginInDto model)
         {
             var user = _userService.Authenticate(model.Login, model.Password);
@@ -72,17 +72,16 @@ namespace WebApi.Controllers
             var loginOut = _mapper.Map<LoginOutDto>(user);
             loginOut.token = tokenString;
             // return basic user info and authentication token
-            return StatusCode((int)HttpStatusCode.OK, loginOut);
-      
+            return StatusCode((int) HttpStatusCode.OK, loginOut);
         }
 
         /// <remarks>
-        /// Регистрация в системе
+        ///     Регистрация в системе
         /// </remarks>
         [AllowAnonymous]
         [HttpPost("Register")]
-        [SwaggerResponse((int)HttpStatusCode.OK, "Newly created user", typeof(UserDto))]
-        [SwaggerResponse((int)HttpStatusCode.BadRequest, Type = typeof(string))]
+        [SwaggerResponse((int) HttpStatusCode.OK, "Newly created user", typeof(UserDto))]
+        [SwaggerResponse((int) HttpStatusCode.BadRequest, Type = typeof(string))]
         public IActionResult Register([FromBody] RegisterDto dto)
         {
             // map dto to entity
@@ -92,7 +91,7 @@ namespace WebApi.Controllers
             {
                 // create user
                 var newUser = _userService.Create(user, dto.Password);
-                return StatusCode((int)HttpStatusCode.OK, _mapper.Map<UserDto>(newUser));
+                return StatusCode((int) HttpStatusCode.OK, _mapper.Map<UserDto>(newUser));
             }
             catch (AppException ex)
             {
@@ -103,11 +102,11 @@ namespace WebApi.Controllers
 
 
         /// <remarks>
-        /// Все пользователи
+        ///     Все пользователи
         /// </remarks>
         [HttpGet("GetAllUsers")]
-        [SwaggerResponse((int)HttpStatusCode.OK, "Users list", typeof(IEnumerable<UserDto>))]
-        [SwaggerResponse((int)HttpStatusCode.BadRequest, Type = typeof(string))]
+        [SwaggerResponse((int) HttpStatusCode.OK, "Users list", typeof(IEnumerable<UserDto>))]
+        [SwaggerResponse((int) HttpStatusCode.BadRequest, Type = typeof(string))]
         public IActionResult GetAll()
         {
             var users = _userService.GetAll();
@@ -116,11 +115,11 @@ namespace WebApi.Controllers
         }
 
         /// <remarks>
-        /// Получить пользователя
+        ///     Получить пользователя
         /// </remarks>
         [HttpGet("GetUser")]
-        [SwaggerResponse((int)HttpStatusCode.OK, "User", typeof(UserDto))]
-        [SwaggerResponse((int)HttpStatusCode.BadRequest, Type = typeof(string))]
+        [SwaggerResponse((int) HttpStatusCode.OK, "User", typeof(UserDto))]
+        [SwaggerResponse((int) HttpStatusCode.BadRequest, Type = typeof(string))]
         public IActionResult GetById(int id)
         {
             var user = _userService.GetById(id);
@@ -129,11 +128,11 @@ namespace WebApi.Controllers
         }
 
         /// <remarks>
-        /// Изменить пользователя
+        ///     Изменить пользователя
         /// </remarks>
         [HttpPut("AlterUser")]
-        [SwaggerResponse((int)HttpStatusCode.OK, "User", typeof(UserDto))]
-        [SwaggerResponse((int)HttpStatusCode.BadRequest, Type = typeof(string))]
+        [SwaggerResponse((int) HttpStatusCode.OK, "User", typeof(UserDto))]
+        [SwaggerResponse((int) HttpStatusCode.BadRequest, Type = typeof(string))]
         public IActionResult Update([FromBody] UserDto model)
         {
             // map dto to entity and set id
@@ -155,7 +154,7 @@ namespace WebApi.Controllers
         }
 
         /// <remarks>
-        /// Удалить пользователя
+        ///     Удалить пользователя
         /// </remarks>
         [HttpDelete("DeleteUser")]
         public IActionResult Delete(int id)

@@ -16,7 +16,6 @@ namespace WebApi.Helpers
 
             CreateMap<TemplateInfoDto, Template>();
             CreateMap<Template, TemplateInfoDto>();
-           
         }
     }
 }

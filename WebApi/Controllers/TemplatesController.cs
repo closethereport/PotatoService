@@ -1,22 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Validations;
 using Swashbuckle.AspNetCore.Annotations;
 using WebApi.Dto.Template;
-using WebApi.Dto.Users;
 using WebApi.Entities;
 using WebApi.Helpers;
 using WebApi.Services;
@@ -44,11 +34,11 @@ namespace WebApi.Controllers
 
 
         /// <remarks>
-        /// Создать новый шаблон
+        ///     Создать новый шаблон
         /// </remarks>
         [HttpPost("Add")]
-        [SwaggerResponse((int)HttpStatusCode.OK, Type = typeof(TemplateInfoDto))]
-        [SwaggerResponse((int)HttpStatusCode.BadRequest, Type = typeof(string))]
+        [SwaggerResponse((int) HttpStatusCode.OK, Type = typeof(TemplateInfoDto))]
+        [SwaggerResponse((int) HttpStatusCode.BadRequest, Type = typeof(string))]
         public IActionResult Add([FromBody] TemplateInfoDto dto)
         {
             var template = _mapper.Map<Template>(dto);
@@ -57,7 +47,7 @@ namespace WebApi.Controllers
                 var userId = int.Parse(HttpContext.User.Identity.Name ?? string.Empty);
                 template.UserId = userId;
                 var newTemplate = _templateService.Create(template);
-                return StatusCode((int)HttpStatusCode.OK, _mapper.Map<TemplateInfoDto>(newTemplate));
+                return StatusCode((int) HttpStatusCode.OK, _mapper.Map<TemplateInfoDto>(newTemplate));
             }
             catch (AppException ex)
             {
@@ -66,11 +56,11 @@ namespace WebApi.Controllers
         }
 
         /// <remarks>
-        /// Получить все шаблоны на сервере
+        ///     Получить все шаблоны на сервере
         /// </remarks>
         [HttpGet("GetAllTemplates")]
-        [SwaggerResponse((int)HttpStatusCode.OK, Type = typeof(IEnumerable<TemplateInfoDto>))]
-        [SwaggerResponse((int)HttpStatusCode.BadRequest, Type = typeof(string))]
+        [SwaggerResponse((int) HttpStatusCode.OK, Type = typeof(IEnumerable<TemplateInfoDto>))]
+        [SwaggerResponse((int) HttpStatusCode.BadRequest, Type = typeof(string))]
         public IActionResult GetAll()
         {
             var templates = _templateService.GetAll();
@@ -79,24 +69,24 @@ namespace WebApi.Controllers
         }
 
         /// <remarks>
-        /// Получить все шаблоны пользователя
+        ///     Получить все шаблоны пользователя
         /// </remarks>
         [HttpGet("GetTemplatesByUserId")]
-        [SwaggerResponse((int)HttpStatusCode.OK, Type = typeof(IEnumerable<TemplateInfoDto>))]
-        [SwaggerResponse((int)HttpStatusCode.BadRequest, Type = typeof(string))]
+        [SwaggerResponse((int) HttpStatusCode.OK, Type = typeof(IEnumerable<TemplateInfoDto>))]
+        [SwaggerResponse((int) HttpStatusCode.BadRequest, Type = typeof(string))]
         public IActionResult GetByUserId(int id)
         {
-            var templates = _templateService.GetAll().Where(x=> x.UserId == id);
+            var templates = _templateService.GetAll().Where(x => x.UserId == id);
             var model = _mapper.Map<IList<TemplateInfoDto>>(templates);
             return Ok(model);
         }
 
         /// <remarks>
-        /// Получить шаблон по id шаблону
+        ///     Получить шаблон по id шаблону
         /// </remarks>
         [HttpGet("GetTemplate")]
-        [SwaggerResponse((int)HttpStatusCode.OK, Type = typeof(TemplateInfoDto))]
-        [SwaggerResponse((int)HttpStatusCode.BadRequest, Type = typeof(string))]
+        [SwaggerResponse((int) HttpStatusCode.OK, Type = typeof(TemplateInfoDto))]
+        [SwaggerResponse((int) HttpStatusCode.BadRequest, Type = typeof(string))]
         public IActionResult GetById(int id)
         {
             var user = _templateService.GetById(id);
@@ -105,11 +95,11 @@ namespace WebApi.Controllers
         }
 
         /// <remarks>
-        /// Изменить шаблон
+        ///     Изменить шаблон
         /// </remarks>
         [HttpPut("AlterTemplate")]
-        [SwaggerResponse((int)HttpStatusCode.OK, Type = typeof(TemplateInfoDto))]
-        [SwaggerResponse((int)HttpStatusCode.BadRequest, Type = typeof(string))]
+        [SwaggerResponse((int) HttpStatusCode.OK, Type = typeof(TemplateInfoDto))]
+        [SwaggerResponse((int) HttpStatusCode.BadRequest, Type = typeof(string))]
         public IActionResult Update([FromBody] TemplateInfoDto model)
         {
             var template = _mapper.Map<Template>(model);
@@ -126,7 +116,7 @@ namespace WebApi.Controllers
         }
 
         /// <remarks>
-        /// Удалить шаблон
+        ///     Удалить шаблон
         /// </remarks>
         [HttpDelete("DeleteTemplate")]
         public IActionResult Delete(int id)
