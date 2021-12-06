@@ -81,14 +81,6 @@ export default defineComponent({
             Authorization.logout();
           },
         },
-        {
-          label: 'registration',
-          icon: 'pi pi-phone',
-          to: '/registration',
-          command: () => {
-            this.$router.push('/registration');
-          },
-        },
       ];
     },
   },

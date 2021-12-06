@@ -65,7 +65,6 @@ const routes: Array<RouteRecordRaw> = [
         path: '/registration',
         name: 'registration',
         component: Registration,
-        beforeEnter: ifAuthenticated,
       },
     ],
   },
