@@ -76,3 +76,4 @@ _[Ss]cripts
 *.db
 Database.db
 /.vs/PotatoService/DesignTimeBuild/.dtbcache.v2
+/web-app-vue/package-lock.json
