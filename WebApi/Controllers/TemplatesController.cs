@@ -41,6 +41,7 @@ namespace WebApi.Controllers
         [SwaggerResponse((int) HttpStatusCode.BadRequest, Type = typeof(string))]
         public IActionResult Add([FromBody] TemplateInfoDto dto)
         {
+            dto.Id = 0;
             var template = _mapper.Map<Template>(dto);
             try
             {
