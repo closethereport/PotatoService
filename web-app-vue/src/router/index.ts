@@ -30,6 +30,7 @@ import Index from '@/views/index/Index.vue';
 import Team from '@/views/team/Team.vue';
 import Login from '@/views/login/Login.vue';
 import Profile from '@/views/profile/Profile.vue';
+import Registration from '@/views/registration/Registration.vue';
 import Cookies from '@/helpers/cookies';
 
 const routes: Array<RouteRecordRaw> = [
@@ -58,6 +59,12 @@ const routes: Array<RouteRecordRaw> = [
         path: '/profile',
         name: 'profile',
         component: Profile,
+        beforeEnter: ifAuthenticated,
+      },
+      {
+        path: '/registration',
+        name: 'registration',
+        component: Registration,
         beforeEnter: ifAuthenticated,
       },
     ],

@@ -1,31 +1,31 @@
 <template>
-  <div class="grid grid-nogutter surface-section">
-    <div class="col-12 md:col-5 text-center md:text-left flex">
-      <section>
+  <div class="container">
+    <div class="row d-flex justify-content-center">
+      <div class="col">
         <p class="block text-6xl p-6 text-primary font-bold mb-0" style="margin-bottom: 4rem">Профиль</p>
         <div class="p-6">
-          <span class="block text-3xl font-bold mb-0">Логин: {{ Login }}</span>
-          <span class="block text-3xl font-bold mb-0">Email: {{ Email }}</span>
+          <label class="block font-bold mb-0 fs-5">Логин: {{ Login }}</label>
+          <label class="block font-bold mb-0 fs-5">Email: {{ Email }}</label>
           <div class="flex">
-            <span class="block text-3xl font-bold mb-0">Имя: </span>
-            <InputText type="text" style="width: 100%; margin: 1px" v-model="Name" />
+            <label class="block font-bold mb-0 fs-5">Имя: </label>
+            <InputText type="text" style="width: 100%; margin: 2px" v-model="Name" />
           </div>
           <div class="flex">
-            <span class="block text-3xl font-bold mb-0">Фамилия: </span>
-            <InputText type="text" style="width: 100%; margin: 1px" v-model="Surname" />
+            <label class="block font-bold mb-0 fs-5">Фамилия: </label>
+            <InputText type="text" style="width: 100%; margin: 2px" v-model="Surname" />
           </div>
           <div class="flex">
-            <span class="block text-3xl font-bold mb-0">Отчество: </span>
-            <InputText type="text" style="width: 100%; margin: 1px" v-model="Patronymic" />
+            <label class="block font-bold mb-0 fs-5">Отчество: </label>
+            <InputText type="text" style="width: 100%; margin: 2px" v-model="Patronymic" />
           </div>
           <div class="flex">
-            <span class="block text-3xl font-bold mb-0">Группа: </span>
-            <InputText type="text" style="width: 100%; margin: 1px" v-model="Group" />
+            <label class="block font-bold mb-0 fs-5">Группа: </label>
+            <InputText type="text" style="width: 100%; margin: 2px" v-model="Group" />
           </div>
           <div class="flex">
-            <span class="block text-3xl font-bold mb-0">Курс: </span>
+            <label class="block font-bold mb-0 fs-5">Курс: </label>
             <Dropdown
-              style="width: 100%; margin: 1px"
+              style="width: 100%; margin: 2px"
               v-model="selectcourse"
               :options="Courses"
               optionLabel="Course"
@@ -33,31 +33,20 @@
               placeholder="Select Course"
             />
           </div>
-          <div class="flex">
-            <span class="block text-3xl font-bold mb-0">Специаальность: </span>
-            <InputText type="text" style="width: 100%; margin: 1px" v-model="Group" />
+          <div class="flex-grid">
+            <label class="block font-bold mb-0 fs-5">Специаальность: </label>
+            <InputText type="text" style="width: 100%; margin: 2px; margin-left: 0px" v-model="Specialization" />
           </div>
           <div class="d-flex flex-row-reverse" style="margin-top: 2rem">
             <Button label="Сохранить" class="p-button-outlined" style="color: #22223b" />
           </div>
         </div>
-        <div class="text-4xl text-primary font-bold mb-0" style="padding-left: 3rem">Предметы:</div>
-        <div class="hex" style="padding: none">
-          <div class="p-6">
-            <li class="text-2xl font-bold mb-0" style="color: #ffffff" v-for="item in items" :key="item.Name">
-              {{ item.Name }}
-            </li>
-          </div>
+      </div>
+      <div class="col">
+        <div class="align-self-center">
+          <img src="@//assets/img/potato/potato-and-monoculars.jpg" alt="Image" class="" style="width: 90%; height: auto" />
         </div>
-      </section>
-    </div>
-    <div class="col-12 md:col-6 overflow-hidden" style="padding-left: 8rem">
-      <img
-        src="http://svgur.com/i/bph.svg"
-        alt="Image"
-        class="md:ml-auto block md:h-full"
-        style="clip-path: polygon(8% 12%, 100% 7%, 100% 100%, 0 100%); width: 90%"
-      />
+      </div>
     </div>
   </div>
 </template>

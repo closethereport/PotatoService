@@ -68,7 +68,16 @@
           </div>
         </div>
 
-        <Button data-cy="login" :disable="loginButton" type="submit" :disabled="v$.$invalid || !loginButton" label="Вход" class="mt-4" />
+        <Button
+          data-cy="login"
+          :disable="loginButton"
+          type="submit"
+          :disabled="v$.$invalid || !loginButton"
+          label="Вход"
+          class="mt-4"
+          style="margin-bottom: 2rem"
+        />
+        <a href="/registration" class="card-link display-7">Registration</a>
       </form>
     </div>
   </div>
