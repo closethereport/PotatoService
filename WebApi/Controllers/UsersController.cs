@@ -69,13 +69,10 @@ namespace WebApi.Controllers
             var token = tokenHandler.CreateToken(tokenDescriptor);
             var tokenString = tokenHandler.WriteToken(token);
 
+            var loginOut = _mapper.Map<LoginOutDto>(user);
+            loginOut.token = tokenString;
             // return basic user info and authentication token
-            return StatusCode((int)HttpStatusCode.OK, new LoginOutDto()
-            {
-                Id = user.Id,
-                Login = user.Login,
-                token = tokenString
-            });
+            return StatusCode((int)HttpStatusCode.OK, loginOut);
       
         }
 
@@ -95,11 +92,7 @@ namespace WebApi.Controllers
             {
                 // create user
                 var newUser = _userService.Create(user, dto.Password);
-                return StatusCode((int)HttpStatusCode.OK, new UserDto()
-                {
-                    Id = newUser.Id,
-                    Login = newUser.Login
-                });
+                return StatusCode((int)HttpStatusCode.OK, _mapper.Map<UserDto>(newUser));
             }
             catch (AppException ex)
             {
@@ -109,6 +102,9 @@ namespace WebApi.Controllers
         }
 
 
+        /// <remarks>
+        /// Все пользователи
+        /// </remarks>
         [HttpGet("GetAllUsers")]
         [SwaggerResponse((int)HttpStatusCode.OK, "Users list", typeof(IEnumerable<UserDto>))]
         [SwaggerResponse((int)HttpStatusCode.BadRequest, Type = typeof(string))]
@@ -119,6 +115,9 @@ namespace WebApi.Controllers
             return Ok(model);
         }
 
+        /// <remarks>
+        /// Получить пользователя
+        /// </remarks>
         [HttpGet("GetUser")]
         [SwaggerResponse((int)HttpStatusCode.OK, "User", typeof(UserDto))]
         [SwaggerResponse((int)HttpStatusCode.BadRequest, Type = typeof(string))]
@@ -129,6 +128,9 @@ namespace WebApi.Controllers
             return Ok(model);
         }
 
+        /// <remarks>
+        /// Изменить пользователя
+        /// </remarks>
         [HttpPut("AlterUser")]
         [SwaggerResponse((int)HttpStatusCode.OK, "User", typeof(UserDto))]
         [SwaggerResponse((int)HttpStatusCode.BadRequest, Type = typeof(string))]
@@ -152,6 +154,9 @@ namespace WebApi.Controllers
             }
         }
 
+        /// <remarks>
+        /// Удалить пользователя
+        /// </remarks>
         [HttpDelete("DeleteUser")]
         public IActionResult Delete(int id)
         {

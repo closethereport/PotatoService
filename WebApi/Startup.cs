@@ -32,6 +32,7 @@ namespace WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<DataContext>();
+            services.AddHttpContextAccessor();
 
             services.AddCors();
             services.AddControllers();
@@ -42,6 +43,10 @@ namespace WebApi
             var appSettings = appSettingsSection.Get<AppSettings>();
             var key = Encoding.ASCII.GetBytes(appSettings.Secret);
 
+            services.AddControllersWithViews()
+                .AddNewtonsoftJson(options =>
+                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                );
 
             // Register the Swagger generator
             {
@@ -129,6 +134,7 @@ namespace WebApi
                 });
 
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ITemplateService, TemplateService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, DataContext dataContext)
