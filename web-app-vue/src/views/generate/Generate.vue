@@ -1,6 +1,6 @@
 <template>
   <Dialog header="Выбор шаблона" v-model:visible="displayTemplates" :style="{ width: '50vw' }">
-    <TemplateDelectDialog />
+    <TemplateDelectDialog @selected="fillTemplatesPreset" />
   </Dialog>
 
   <div class="header-container">
@@ -18,51 +18,62 @@
       <div class="d-flex justify-content-end m-2"><Button @click="displayTemplates = true" label="Заполнить из шаблона" class="p-button-sm" /></div>
       <ul class="list-none p-0 m-0">
         <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
-          <div class="text-500 w-6 md:w-2 font-medium">JobName</div>
+          <div class="text-500 w-6 md:w-2 font-medium">Ф.И.О.</div>
           <div class="text-900 w-full md:flex-order-0 mb-2 mt-2">
-            <InputText type="text" class="p-inputtext w-100" placeholder="Large" />
+            <InputText type="text" class="p-inputtext w-100" placeholder="Васильев Вениамин Созонович" />
           </div>
         </li>
         <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
-          <div class="text-500 w-6 md:w-2 font-medium">Subject</div>
+          <div class="text-500 w-6 md:w-2 font-medium">Номер курса</div>
           <div class="text-900 w-full md:flex-order-0 mb-2 mt-2">
-            <InputText type="text" class="p-inputtext w-100" placeholder="Large" />
+            <InputText v-model="template.courseNumber" type="text" class="p-inputtext w-100" placeholder="1" />
           </div>
         </li>
         <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
-          <div class="text-500 w-6 md:w-2 font-medium">LessonName</div>
+          <div class="text-500 w-6 md:w-2 font-medium">Название группы</div>
           <div class="text-900 w-full md:flex-order-0 mb-2 mt-2">
-            <InputText type="text" class="p-inputtext w-100" placeholder="Large" />
+            <InputText v-model="template.groupName" type="text" class="p-inputtext w-100" placeholder="ИКПИ-00" />
           </div>
         </li>
         <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
-          <div class="text-500 w-6 md:w-2 font-medium">FullNameTeacher</div>
+          <div class="text-500 w-6 md:w-2 font-medium">Факультет</div>
           <div class="text-900 w-full md:flex-order-0 mb-2 mt-2">
-            <InputText type="text" class="p-inputtext w-100" placeholder="Large" />
+            <InputText v-model="template.faculty" type="text" class="p-inputtext w-100" placeholder="Инфокоммуникационных сетей и систем" />
           </div>
         </li>
         <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
-          <div class="text-500 w-6 md:w-2 font-medium">CourseNumber</div>
+          <div class="text-500 w-6 md:w-2 font-medium">Кафедра</div>
           <div class="text-900 w-full md:flex-order-0 mb-2 mt-2">
-            <InputText type="text" class="p-inputtext w-100" placeholder="Large" />
+            <InputText
+              v-model="template.department"
+              type="text"
+              class="p-inputtext w-100"
+              placeholder="Программной инженерии и вычислительной техники"
+            />
           </div>
         </li>
         <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
-          <div class="text-500 w-6 md:w-2 font-medium">CourseNumber</div>
+          <div class="text-500 w-6 md:w-2 font-medium">Тип работы (верхний заголовок)</div>
           <div class="text-900 w-full md:flex-order-0 mb-2 mt-2">
-            <InputText type="text" class="p-inputtext w-100" placeholder="Large" />
+            <InputText v-model="template.jobName" type="text" class="p-inputtext w-100" placeholder="Курсовая работа / Лабораторная работа №1" />
           </div>
         </li>
         <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
-          <div class="text-500 w-6 md:w-2 font-medium">GroupName</div>
+          <div class="text-500 w-6 md:w-2 font-medium">Дисциплина</div>
           <div class="text-900 w-full md:flex-order-0 mb-2 mt-2">
-            <InputText type="text" class="p-inputtext w-100" placeholder="Large" />
+            <InputText v-model="template.lessonName" type="text" class="p-inputtext w-100" placeholder="Web-технологии" />
           </div>
         </li>
         <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
-          <div class="text-500 w-6 md:w-2 font-medium">Faculty</div>
+          <div class="text-500 w-6 md:w-2 font-medium">Тема</div>
           <div class="text-900 w-full md:flex-order-0 mb-2 mt-2">
-            <InputText type="text" class="p-inputtext w-100" placeholder="Large" />
+            <InputText v-model="template.subject" type="text" class="p-inputtext w-100" placeholder="HTML 5 - Перспективы" />
+          </div>
+        </li>
+        <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
+          <div class="text-500 w-6 md:w-2 font-medium">Ф.И.О преподователя</div>
+          <div class="text-900 w-full md:flex-order-0 mb-2 mt-2">
+            <InputText v-model="template.fullNameTeacher" type="text" class="p-inputtext w-100" placeholder="Авдеев Владислав Евсеевич" />
           </div>
         </li>
       </ul>
