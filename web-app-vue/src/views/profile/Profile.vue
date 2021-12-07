@@ -13,7 +13,7 @@
         <span class="p-inputgroup-addon">
           <i class="pi pi-user"></i>
         </span>
-        <InputText placeholder="Login" v-model="Login" disabled />
+        <InputText placeholder="Login" v-model="login" />
       </div>
     </div>
     <div class="field">
@@ -22,7 +22,7 @@
         <span class="p-inputgroup-addon">
           <i class="pi pi-envelope"></i>
         </span>
-        <InputText placeholder="Email" v-model="Email" />
+        <InputText placeholder="Email" v-model="email" />
       </div>
     </div>
     <div class="d-flex bd-highlight">
