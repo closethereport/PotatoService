@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-export interface LoginInDto {
-  login: string;
-  password: string;
+export interface LoginInDto { 
+    login: string;
+    password: string;
 }

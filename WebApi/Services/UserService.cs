@@ -77,12 +77,15 @@ namespace WebApi.Services
             return user;
         }
 
-        public void Update(User userParam, string password = null)
+        public void Update(User userParam, string password)
         {
             var user = _context.Users.Find(userParam.Id);
 
             if (user == null)
                 throw new AppException("User not found");
+
+            if (password == null || !VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
+                throw new AppException("Old password is incorrect");
 
             // update username if it has changed
             if (!string.IsNullOrWhiteSpace(userParam.Login) && userParam.Login != user.Login)
@@ -106,6 +109,7 @@ namespace WebApi.Services
 
             user.Email = userParam.Email;
             user.FullName = userParam.FullName;
+            user.TemplateDefault = userParam.TemplateDefault;
 
             _context.Users.Update(user);
             _context.SaveChanges();

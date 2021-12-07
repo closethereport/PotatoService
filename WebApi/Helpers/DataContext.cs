@@ -11,9 +11,9 @@ namespace WebApi.Helpers
 
         public DataContext(IConfiguration configuration)
         {
-            //this.Database.Migrate();
             Configuration = configuration;
             Database.EnsureCreated();
+            Database.Migrate();
         }
 
         public DbSet<User> Users { get; set; }
@@ -27,6 +27,8 @@ namespace WebApi.Helpers
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
                     .ValueGeneratedOnAdd();
+
+                entity.OwnsOne(p => p.TemplateDefault);
             });
 
             byte[] passwordHash, passwordSalt;
@@ -43,7 +45,8 @@ namespace WebApi.Helpers
             {
                 entity.ToTable("Templates", "core");
 
-                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.Id).HasColumnName("id").ValueGeneratedOnAdd();
+                ;
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Templates)
@@ -51,6 +54,7 @@ namespace WebApi.Helpers
                     .OnDelete(DeleteBehavior.SetNull)
                     .HasConstraintName("FK_Template - UserId");
             });
+
 
             base.OnModelCreating(modelBuilder);
         }
