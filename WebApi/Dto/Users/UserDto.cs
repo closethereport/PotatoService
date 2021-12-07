@@ -1,3 +1,5 @@
+using WebApi.Dto.Template;
+
 namespace WebApi.Dto.Users
 {
     public class UserDto
@@ -7,5 +9,6 @@ namespace WebApi.Dto.Users
         public string Login { get; set; }
         public string Password { get; set; }
         public string Email { get; set; }
+        public TemplateDto TemplateDefault { get; set; }
     }
 }

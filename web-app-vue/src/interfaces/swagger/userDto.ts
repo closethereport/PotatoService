@@ -9,11 +9,13 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { TemplateDto } from './templateDto';
 
-export interface UserDto {
-  id?: number;
-  fullName?: string;
-  login?: string;
-  password?: string;
-  email?: string;
+export interface UserDto { 
+    id?: number;
+    fullName?: string;
+    login?: string;
+    password?: string;
+    email?: string;
+    templateDefault?: TemplateDto;
 }

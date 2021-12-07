@@ -133,7 +133,7 @@ namespace WebApi.Controllers
         [HttpPut("AlterUser")]
         [SwaggerResponse((int) HttpStatusCode.OK, "User", typeof(UserDto))]
         [SwaggerResponse((int) HttpStatusCode.BadRequest, Type = typeof(string))]
-        public IActionResult Update([FromBody] UserDto model)
+        public IActionResult Update([FromBody] UserDto model, string oldPassword)
         {
             // map dto to entity and set id
             var user = _mapper.Map<User>(model);
@@ -141,7 +141,7 @@ namespace WebApi.Controllers
             try
             {
                 // update user 
-                _userService.Update(user, model.Password);
+                _userService.Update(user, oldPassword);
                 var alterUser = _userService.GetById(user.Id);
                 var userDto = _mapper.Map<UserDto>(alterUser);
                 return Ok(userDto);

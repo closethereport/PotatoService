@@ -1,4 +1,5 @@
 import Api from '@/client-api/api';
+import AlterUserDto from '@/interfaces/local-Interfaces/alterUserDto';
 import { LoginInDto } from '@/interfaces/swagger/loginInDto';
 import { LoginOutDto } from '@/interfaces/swagger/loginOutDto';
 import { RegisterDto } from '@/interfaces/swagger/registerDto';
@@ -34,9 +35,9 @@ const actions: ActionTree<IStateUsersTypes, IRootState> = {
     const route = `/Users/GetUser?id=${userId}`;
     return Api.instance.getAsync<UserDto>(route);
   },
-  [UsersAction.alter_user]({ state: IStateUsersTypes }, userDto: UserDto) {
-    const route = `/Users/AlterUser`;
-    return Api.instance.putAsync<UserDto>(route, userDto);
+  [UsersAction.alter_user]({ state: IStateUsersTypes }, data: AlterUserDto) {
+    const route = `/Users/AlterUser?oldPassword=${data.oldPassword}`;
+    return Api.instance.putAsync<UserDto>(route, data);
   },
   [UsersAction.delate_user_by_id]({ state: IStateUsersTypes }, userId: number) {
     const route = `/Users/DeleteUser?id=${userId}`;

@@ -14,6 +14,12 @@ namespace WebApi.Helpers
             CreateMap<UserDto, User>();
             CreateMap<User, LoginOutDto>();
 
+            CreateMap<TemplateInfoDto, TemplateDto>();
+            CreateMap<TemplateDto, TemplateInfoDto>();
+
+            CreateMap<TemplateDto, Template>();
+            CreateMap<Template, TemplateDto>();
+
             CreateMap<TemplateInfoDto, Template>();
             CreateMap<Template, TemplateInfoDto>();
         }

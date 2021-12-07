@@ -1,13 +1,7 @@
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace WebApi.Entities
+﻿namespace WebApi.Dto.Template
 {
-    [Table("Template")]
-    public class Template
+    public class TemplateDto
     {
-        [Key] public int Id { get; set; }
-        public int UserId { get; set; }
         public string Faculty { get; set; }
         public string Department { get; set; }
         public string JobName { get; set; }
@@ -16,6 +10,5 @@ namespace WebApi.Entities
         public string FullNameTeacher { get; set; }
         public string CourseNumber { get; set; }
         public string GroupName { get; set; }
-        public User User { get; set; }
     }
 }
