@@ -1,5 +1,5 @@
 <template>
-  <div class="header-container pt-4">
+  <div class="header-container pt-0">
     <div class="px-4 py-8 md:px-6 lg:px-8">
       <div class="text-700 text-center">
         <div class="text-white font-bold text-5xl mb-3">Potatoes</div>
@@ -41,7 +41,7 @@
     </div>
   </div>
 
-  <div class="grid grid-nogutter surface-section text-800">
+  <div class="grid grid-nogutter surface-section text-800 px-4 py-8 md:px-6 lg:px-8">
     <div class="col-12 md:col-6 p-6 text-center md:text-left flex align-items-center">
       <section>
         <span class="block text-6xl font-bold mb-0">Создавайте релевантные титульные листы</span>
@@ -58,10 +58,12 @@
     </div>
     <div class="col-12 md:col-6 overflow-hidden">
       <img
-        src="@//assets/img/potato/potato.svg"
-        alt="Image"
+        src="@//assets/svg/indexMainPicture.svg"
+        alt="MainImage"
         class="md:ml-auto block md:h-full"
         style="clip-path: polygon(8% 12%, 100% 7%, 100% 100%, 0 100%)"
+        width="850"
+        height="850"
       />
     </div>
   </div>
