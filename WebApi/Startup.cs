@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -11,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json;
 using WebApi.Helpers;
 using WebApi.Services;
 
@@ -30,6 +33,7 @@ namespace WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<DataContext>();
+            services.AddHttpContextAccessor();
 
             services.AddCors();
             services.AddControllers();
@@ -40,6 +44,10 @@ namespace WebApi
             var appSettings = appSettingsSection.Get<AppSettings>();
             var key = Encoding.ASCII.GetBytes(appSettings.Secret);
 
+            services.AddControllersWithViews()
+                .AddNewtonsoftJson(options =>
+                    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                );
 
             // Register the Swagger generator
             {
@@ -47,9 +55,9 @@ namespace WebApi
                 {
                     c.SwaggerDoc("Potato API", new OpenApiInfo
                     {
-                        Version = "1.0",
+                        Version = "1.1",
                         Title = "Potato API",
-                        Description = "бекенд",
+                        Description = "Service for generating title pages",
                         Contact = new OpenApiContact
                         {
                             Name = "Egor",
@@ -89,9 +97,9 @@ namespace WebApi
                         }
                     });
 
-                    //var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                    //var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                    //c.IncludeXmlComments(xmlPath);
+                    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                    c.IncludeXmlComments(xmlPath);
                 });
             }
 
@@ -127,6 +135,7 @@ namespace WebApi
                 });
 
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ITemplateService, TemplateService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, DataContext dataContext)

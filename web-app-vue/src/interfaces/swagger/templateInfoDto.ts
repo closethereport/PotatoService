@@ -10,8 +10,15 @@
  * Do not edit the class manually.
  */
 
-export interface RegisterDto {
-  login: string;
-  password: string;
-  email?: string;
+export interface TemplateInfoDto {
+  id?: number;
+  userId?: number;
+  faculty?: string;
+  department?: string;
+  jobName?: string;
+  subject?: string;
+  lessonName?: string;
+  fullNameTeacher?: string;
+  courseNumber?: string;
+  groupName?: string;
 }

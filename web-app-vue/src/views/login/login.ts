@@ -1,6 +1,7 @@
 import Api from '@/client-api/api';
 import Cookies from '@/helpers/cookies';
 import { mapActionsNamespaced } from '@/helpers/typedMappers.helper';
+import { LoginOutDto } from '@/interfaces/swagger/loginOutDto';
 import { UserDto } from '@/interfaces/swagger/userDto';
 import store from '@/store';
 import { UsersAction, UsersActionType } from '@/store/modules/users/users.actions';
@@ -52,19 +53,19 @@ export default defineComponent({
       this.authorization({
         login: component.login,
         password: component.password,
-      }).then(({ data, status }: { data: string | UserDto; status: number }) => {
+      }).then(({ data, status }: { data: string | LoginOutDto; status: number }) => {
         this.processLoginResult({ data, status });
       });
     },
     //обработка ответа от сервера
-    processLoginResult({ data, status }: { data: any | UserDto; status: number }): void {
+    processLoginResult({ data, status }: { data: any | LoginOutDto; status: number }): void {
       if (status != 200) {
         //если статус код ответа хуеый - выводим сообщение пользователю
         this.showAlert(data.message ?? data);
         this.loginButton = true;
       } else {
         //все гуд, авторизация прошла
-        const user = data as UserDto;
+        const user = data as LoginOutDto;
         this.hideAlert();
         const dateExpire = new Date();
         const nextYear = dateExpire.getFullYear() + 1;
@@ -84,10 +85,12 @@ export default defineComponent({
   },
   mounted() {
     //сообщение об ошибки можно передать через сторр с других страниц
-    const loginMessage: string | null = Cookies.get('login-message');
+    /*   const loginMessage: string | null = Cookies.get('login-message');
     if (loginMessage != null) {
       this.messages.push({ severity: 'error', content: loginMessage, id: 1 });
       Cookies.delete('login-message');
-    }
+    } */
+    //TODO: Вырезать эту логику
+    Cookies.delete('login-message');
   },
 });

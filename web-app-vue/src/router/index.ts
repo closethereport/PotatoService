@@ -31,6 +31,8 @@ import Team from '@/views/team/Team.vue';
 import Login from '@/views/login/Login.vue';
 import Profile from '@/views/profile/Profile.vue';
 import Registration from '@/views/registration/Registration.vue';
+import Generate from '@/views/generate/Generate.vue';
+
 import Cookies from '@/helpers/cookies';
 
 const routes: Array<RouteRecordRaw> = [
@@ -65,6 +67,13 @@ const routes: Array<RouteRecordRaw> = [
         path: '/registration',
         name: 'registration',
         component: Registration,
+        beforeEnter: ifNotAuthenticated,
+      },
+      {
+        path: '/generate',
+        name: 'generate',
+        component: Generate,
+        beforeEnter: ifAuthenticated,
       },
     ],
   },

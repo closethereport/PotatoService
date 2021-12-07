@@ -30,17 +30,8 @@ export default defineComponent({
             this.$router.push('/');
           },
         },
-        { separator: true },
         {
-          label: 'О сервисе',
-          icon: 'pi pi-book',
-          to: '/',
-          command: () => {
-            this.$router.push('/');
-          },
-        },
-        {
-          label: 'Наша команда',
+          label: 'Разработчики',
           icon: 'pi pi-users',
           to: '/team',
           command: () => {
@@ -48,19 +39,21 @@ export default defineComponent({
           },
         },
         {
-          label: 'Контакты',
-          icon: 'pi pi-phone',
-          to: '/',
-          command: () => {
-            this.$router.push('/');
-          },
-        },
-        {
+          hidden: !this.isAuthenticated,
           label: 'Профиль',
           icon: 'pi pi-phone',
           to: '/profile',
           command: () => {
             this.$router.push('/profile');
+          },
+        },
+        {
+          hidden: !this.isAuthenticated,
+          label: 'Генерация файла',
+          icon: 'pi pi-phone',
+          to: '/generate',
+          command: () => {
+            this.$router.push('/generate');
           },
         },
         {

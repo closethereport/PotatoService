@@ -1,5 +1,5 @@
 <template>
-  <div class="header-container pt-4">
+  <div class="header-container">
     <div class="px-4 py-8 md:px-6 lg:px-8">
       <div class="text-700 text-center">
         <div class="text-white font-bold text-5xl mb-3">Авторизация</div>
@@ -7,18 +7,11 @@
     </div>
   </div>
   <div class="container ml-auto box-center" style="max-width: 550px">
-    <transition-group name="p-message" tag="div">
-      <Message style="margin-top: -70px" v-for="msg of messages" :severity="msg.severity" :key="msg.id">{{ msg.content }}</Message>
-    </transition-group>
-
-    <div data-cy="HeaderText_LoginHeader" class="display-6 text-center">Login</div>
-
-    <div class="text-center">
-      <small class="text-muted mt-2">PT is cool</small>
-    </div>
-
-    <div class="d-flex justify-content-center mt-5">
+    <div class="d-flex justify-content-center mt-5 p-3 bg-light.bg-gradient">
       <form @submit.prevent="handleSubmit(!v$.$invalid)" class="p-fluid">
+        <transition-group name="p-message" tag="div">
+          <Message v-for="msg of messages" :severity="msg.severity" :key="msg.id">{{ msg.content }}</Message>
+        </transition-group>
         <div class="p-field">
           <span class="p-input-icon-left">
             <i class="pi pi-user" />
@@ -68,16 +61,8 @@
           </div>
         </div>
 
-        <Button
-          data-cy="login"
-          :disable="loginButton"
-          type="submit"
-          :disabled="v$.$invalid || !loginButton"
-          label="Вход"
-          class="mt-4"
-          style="margin-bottom: 2rem"
-        />
-        <a href="/registration" class="card-link display-7">Registration</a>
+        <Button :disable="loginButton" type="submit" :disabled="v$.$invalid || !loginButton" label="Вход" class="mt-4" />
+        <Button @click="$router.push('/registration')" label="Регистрация" class="mt-2" />
       </form>
     </div>
   </div>
