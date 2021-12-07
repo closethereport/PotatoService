@@ -8,6 +8,7 @@ import { UserDto } from '@/interfaces/swagger/userDto';
 import { MutationTypes } from '@/store/mutations';
 import store from '@/store';
 import Api from '@/client-api/api';
+import { LoginOutDto } from '@/interfaces/swagger/loginOutDto';
 export default defineComponent({
   validations() {
     return {
@@ -57,7 +58,7 @@ export default defineComponent({
         this.rePassword = '';
         this.password = '';
       } else {
-        this.register({
+        this.Register({
           login: component.login,
           password: component.password,
         }).then(({ data, status }: { data: string | UserDto; status: number }) => {
@@ -72,7 +73,7 @@ export default defineComponent({
                 this.isEnableRegisterButton = true;
               } else {
                 //все гуд, авторизация прошла
-                const user = data as UserDto;
+                const user = data as LoginOutDto;
                 this.hideAlert();
                 const dateExpire = new Date();
                 const nextYear = dateExpire.getFullYear() + 1;

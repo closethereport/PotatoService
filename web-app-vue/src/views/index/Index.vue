@@ -4,7 +4,6 @@
       <div class="text-700 text-center">
         <div class="text-white font-bold text-5xl mb-3">Potatoes</div>
         <div class="text-white text-2xl mb-5">Иновационное решение для оформления титульных листов перед сдачей лабораторных работ!</div>
-        <Button label="Вход" icon="pi pi-sign-in" class="font-bold px-3 py-1 p-button-raised p-button-rounded white-space-nowrap"></Button>
         <Particles id="tsparticles" :options="particlesOptions" />
       </div>
     </div>
@@ -41,7 +40,7 @@
     </div>
   </div>
 
-  <div class="grid grid-nogutter surface-section text-800">
+  <div class="grid grid-nogutter surface-section text-800 px-4 py-8 md:px-6 lg:px-8">
     <div class="col-12 md:col-6 p-6 text-center md:text-left flex align-items-center">
       <section>
         <span class="block text-6xl font-bold mb-0">Создавайте релевантные титульные листы</span>
@@ -73,6 +72,8 @@ export default Index;
 </script>
 
 <style lang="scss" scoped>
+//TODO: вынести стили заголовка в файл и переиспользовать по всему проекту
+//TODO: Вынести заголовок в компонету и переиспользовать (чтобы не дублировать header-container на каждой странице)
 .header-container {
   background-color: #22223b;
   height: 100%;

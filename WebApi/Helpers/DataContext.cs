@@ -17,16 +17,17 @@ namespace WebApi.Helpers
         }
 
         public DbSet<User> Users { get; set; }
+        public DbSet<Template> Templates { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<User>(entity =>
-            //{
-            //    entity.ToTable("Users", "security");
-            //    entity.Property(e => e.Id)
-            //        .HasColumnName("id")
-            //        .ValueGeneratedOnAdd();
-            //});
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.ToTable("Users", "security");
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .ValueGeneratedOnAdd();
+            });
 
             byte[] passwordHash, passwordSalt;
             UserService.CreatePasswordHash("admin", out passwordHash, out passwordSalt);
@@ -36,6 +37,19 @@ namespace WebApi.Helpers
                 Login = "admin",
                 PasswordHash = passwordHash,
                 PasswordSalt = passwordSalt
+            });
+
+            modelBuilder.Entity<Template>(entity =>
+            {
+                entity.ToTable("Templates", "core");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.Templates)
+                    .HasForeignKey(d => d.UserId)
+                    .OnDelete(DeleteBehavior.SetNull)
+                    .HasConstraintName("FK_Template - UserId");
             });
 
             base.OnModelCreating(modelBuilder);

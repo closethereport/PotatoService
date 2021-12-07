@@ -11,67 +11,26 @@
       <Message style="margin-top: -70px" v-for="msg of messages" :severity="msg.severity" :key="msg.id">{{ msg.content }}</Message>
     </transition-group>
 
-    <div data-cy="HeaderText_LoginHeader" class="display-6 text-center">Registration</div>
-
-    <div class="text-center">
-      <small class="text-muted mt-2">PT is good</small>
-    </div>
     <div class="d-flex justify-content-center mt-5">
-      <form @submit.prevent="handleSubmit(!v$.$invalid)" class="p-fluid">
+      <form class="p-fluid">
         <div class="p-field">
           <span class="p-input-icon-left">
             <i class="pi pi-user" />
-            <InputText
-              style="width: 100%"
-              type="text"
-              data-cy="username"
-              placeholder="Login"
-              v-model="v$.login.$model"
-              :class="{ 'p-invalid': v$.login.$errors.length > 0 }"
-            />
+            <InputText style="width: 100%" type="text" data-cy="username" placeholder="Login" />
           </span>
         </div>
         <div class="p-field mt-3">
           <div class="p-field">
             <span class="p-input-icon-left">
               <i class="pi pi-envelope" />
-              <InputText
-                style="width: 100%"
-                type="text"
-                data-cy="email"
-                placeholder="Email"
-                v-model="v$.email.$model"
-                :class="{ 'p-invalid': v$.email.$errors.length > 0 }"
-              />
+              <InputText style="width: 100%" type="text" data-cy="username" placeholder="Email" />
             </span>
           </div>
         </div>
         <div class="p-field mt-3">
           <div class="p-field">
             <span class="p-input-icon-left">
-              <Password
-                :feedback="false"
-                inputStyle="padding-left: 2.5rem !important;"
-                toggleMask
-                data-cy="password"
-                v-model="v$.password.$model"
-                :class="{ 'p-invalid': v$.password.$errors.length > 0 }"
-                placeholder="Password"
-              >
-                <template #header>
-                  <h6>Pick a password</h6>
-                </template>
-                <template #footer="sp">
-                  {{ sp.level }}
-                  <Divider />
-                  <p class="p-mt-2">Suggestions</p>
-                  <ul class="p-pl-2 p-ml-2 p-mt-0" style="line-height: 1.5">
-                    <li>At least one lowercase</li>
-                    <li>At least one uppercase</li>
-                    <li>At least one numeric</li>
-                    <li>Minimum 8 characters</li>
-                  </ul>
-                </template>
+              <Password :feedback="false" inputStyle="padding-left: 2.5rem !important;" toggleMask data-cy="password" placeholder="Password">
               </Password>
               <i class="pi pi-lock" />
             </span>
@@ -80,30 +39,14 @@
         <div class="p-field mt-3">
           <div class="p-field">
             <span class="p-input-icon-left">
-              <Password
-                :feedback="false"
-                inputStyle="padding-left: 2.5rem !important;"
-                toggleMask
-                data-cy="repeatpassword"
-                v-model="v$.rePassword.$model"
-                :class="{ 'p-invalid': v$.rePassword.$errors.length > 0 }"
-                placeholder="Repeat password"
-              >
+              <Password :feedback="false" inputStyle="padding-left: 2.5rem !important;" toggleMask data-cy="password" placeholder="Repeat password">
               </Password>
               <i class="pi pi-unlock" />
             </span>
           </div>
         </div>
 
-        <Button
-          data-cy="login"
-          :disable="isEnableRegisterButton"
-          :disabled="v$.$invalid || !isEnableRegisterButton"
-          type="submit"
-          label="Зарегистрироваться"
-          class="mt-4"
-          style="margin-bottom: 2rem"
-        />
+        <Button data-cy="login" :disable="loginButton" type="submit" label="Зарегистрироваться" class="mt-4" style="margin-bottom: 2rem" />
       </form>
     </div>
   </div>

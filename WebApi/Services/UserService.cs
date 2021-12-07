@@ -104,6 +104,9 @@ namespace WebApi.Services
                 user.PasswordSalt = passwordSalt;
             }
 
+            user.Email = userParam.Email;
+            user.FullName = userParam.FullName;
+
             _context.Users.Update(user);
             _context.SaveChanges();
         }

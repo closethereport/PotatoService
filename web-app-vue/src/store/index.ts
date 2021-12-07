@@ -1,3 +1,4 @@
+import { LoginOutDto } from '@/interfaces/swagger/loginOutDto';
 import { UserDto } from '@/interfaces/swagger/userDto';
 import { createStore, GetterTree, MutationTree } from 'vuex';
 import { Getters, GettersTypes } from './getters';
@@ -5,7 +6,7 @@ import { Mutations, MutationTypes } from './mutations';
 import { storeModules } from './store-manager/store.modules';
 
 export interface IRootState {
-  currentUser: UserDto | null;
+  currentUser: LoginOutDto | null;
   token: string;
 }
 
@@ -30,7 +31,7 @@ const mutations: MutationTree<IRootState> & Mutations = {
     location.reload();
     //TODO: сделать нормально. Нам хватит обычного пуша, тк страниц не много
   },
-  [MutationTypes.SET_CURRENT_USER](state: IRootState, data: { user: UserDto; isSession: false }) {
+  [MutationTypes.SET_CURRENT_USER](state: IRootState, data: { user: LoginOutDto; isSession: false }) {
     const setUser = JSON.stringify(data.user);
     if (!data.isSession) {
       localStorage.setItem('user', setUser);

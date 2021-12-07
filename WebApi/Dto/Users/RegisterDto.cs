@@ -7,5 +7,7 @@ namespace WebApi.Dto.Users
         [Required] public string Login { get; set; }
 
         [Required] public string Password { get; set; }
+
+        public string Email { get; set; }
     }
 }

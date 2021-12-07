@@ -1,5 +1,6 @@
 import Api from '@/client-api/api';
 import { LoginInDto } from '@/interfaces/swagger/loginInDto';
+import { LoginOutDto } from '@/interfaces/swagger/loginOutDto';
 import { RegisterDto } from '@/interfaces/swagger/registerDto';
 import { UserDto } from '@/interfaces/swagger/userDto';
 import { IRootState } from '@/store';
@@ -19,15 +20,27 @@ const mutations: MutationTree<IStateUsersTypes> & UsersMutationTypes = {};
 const actions: ActionTree<IStateUsersTypes, IRootState> = {
   [UsersAction.login]({ state: IStateUsersTypes }, data: LoginInDto) {
     const route = `/Users/login`;
-    return Api.instance.postAsync<UserDto>(route, data);
+    return Api.instance.postAsync<LoginOutDto>(route, data);
   },
-  [UsersAction.get_users]({ state: IStateUsersTypes }) {
-    const route = `/Users/Users`;
+  [UsersAction.register]({ state: IStateUsersTypes }, register: RegisterDto) {
+    const route = `/Users/Register`;
+    return Api.instance.postAsync<UserDto>(route, register);
+  },
+  [UsersAction.get_all_users]({ state: IStateUsersTypes }) {
+    const route = `/Users/GetAllUsers`;
     return Api.instance.getAsync<UserDto[]>(route);
   },
-  [UsersAction.register]({ state: IStateUsersTypes }, data: RegisterDto) {
-    const route = `/Users/register`;
-    return Api.instance.postAsync<RegisterDto>(route, data);
+  [UsersAction.get_user_by_id]({ state: IStateUsersTypes }, userId: number) {
+    const route = `/Users/GetUser?id=${userId}`;
+    return Api.instance.getAsync<UserDto>(route);
+  },
+  [UsersAction.alter_user]({ state: IStateUsersTypes }, userDto: UserDto) {
+    const route = `/Users/AlterUser`;
+    return Api.instance.putAsync<UserDto>(route, userDto);
+  },
+  [UsersAction.delate_user_by_id]({ state: IStateUsersTypes }, userId: number) {
+    const route = `/Users/DeleteUser?id=${userId}`;
+    return Api.instance.deleteAsync<void>(route);
   },
 };
 
