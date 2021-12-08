@@ -7,82 +7,91 @@
     </div>
   </div>
   <div class="container p-5">
-    <div class="field">
-      <label for="nickname" class="font-medium" style="padding-left: 0.25rem">Login</label>
-      <div class="p-inputgroup">
-        <span class="p-inputgroup-addon">
-          <i class="pi pi-user"></i>
-        </span>
-        <InputText placeholder="Login" v-model="login" />
-      </div>
-    </div>
-    <div class="field">
-      <label for="nickname" class="font-medium" style="padding-left: 0.25rem">Email</label>
-      <div class="p-inputgroup">
-        <span class="p-inputgroup-addon">
-          <i class="pi pi-envelope"></i>
-        </span>
-        <InputText placeholder="Email" v-model="email" />
-      </div>
-    </div>
-    <div class="d-flex bd-highlight">
-      <div class="flex-grow-1 bd-highlight">
-        <div class="p-fluid p-grid">
-          <div class="p-field p-col-12" style="padding-right: 2rem">
-            <label for="nickname" class="font-medium" style="padding-left: 0.25rem">Ф.И.О</label>
-            <InputText id="inputtext" type="text" v-model="full_name" placeholder="Васильев Вениамин Созонович" />
-          </div>
+    <form @submit.prevent="handleSubmit(!v$.$invalid)">
+      <div class="field">
+        <label for="nickname" class="font-medium" style="padding-left: 0.25rem">Login</label>
+        <div class="p-inputgroup">
+          <span class="p-inputgroup-addon">
+            <i class="pi pi-user"></i>
+          </span>
+          <InputText placeholder="Login" v-model="user.login" disabled />
         </div>
       </div>
-      <div class="flex-grow-1 bd-highlight">
-        <div class="p-fluid p-grid">
-          <div class="p-field p-col-12" style="padding-left: 2rem">
-            <label for="nickname" class="font-medium" style="padding-left: 0.25rem">Группа</label>
-            <InputText id="inputtext" type="text" v-model="group" placeholder="ИКПИ: " />
-          </div>
+      <div class="field">
+        <label for="nickname" class="font-medium" style="padding-left: 0.25rem">Email</label>
+        <div class="p-inputgroup">
+          <span class="p-inputgroup-addon">
+            <i class="pi pi-envelope"></i>
+          </span>
+          <InputText placeholder="Email" v-model="user.email" />
         </div>
       </div>
-    </div>
-    <div class="field mb-4" style="margin-top: 1rem">
-      <label for="nickname" class="font-medium" style="padding-left: 0.25rem">Факультет</label>
-      <div class="p-inputgroup">
-        <span class="p-inputgroup-addon">
-          <i class="pi pi-briefcase"></i>
-        </span>
-        <InputText placeholder="Информационных сетей и систем" v-model="faculty" />
-      </div>
-    </div>
-    <div class="d-flex bd-highlight">
-      <div class="flex-grow-1 bd-highlight">
-        <div class="p-fluid p-grid">
-          <div class="p-field p-col-12" style="padding-right: 2rem">
-            <label for="nickname" class="font-medium" style="padding-left: 0.25rem">Старый пароль</label>
-            <div class="p-inputgroup">
-              <span class="p-inputgroup-addon">
-                <i class="pi pi-lock"></i>
-              </span>
-              <InputText id="inputtext" type="text" v-model="password" placeholder="Pasword" />
+      <div class="d-flex bd-highlight">
+        <div class="flex-grow-1 bd-highlight">
+          <div class="p-fluid p-grid">
+            <div class="p-field p-col-12" style="padding-right: 2rem">
+              <label for="nickname" class="font-medium" style="padding-left: 0.25rem">Ф.И.О</label>
+              <InputText id="inputtext" type="text" v-model="user.fullName" placeholder="Васильев Вениамин Созонович" />
+            </div>
+          </div>
+        </div>
+        <div class="flex-grow-1 bd-highlight">
+          <div class="p-fluid p-grid">
+            <div class="p-field p-col-12" style="padding-left: 2rem">
+              <label for="nickname" class="font-medium" style="padding-left: 0.25rem">Группа</label>
+              <InputText id="inputtext" type="text" placeholder="ИКПИ: " />
             </div>
           </div>
         </div>
       </div>
-      <div class="flex-grow-1 bd-highlight">
-        <div class="p-fluid p-grid">
-          <div class="p-field p-col-12" style="padding-left: 2rem">
-            <label for="nickname" class="font-medium" style="padding-left: 0.25rem">Новый пароль</label>
-            <div class="p-inputgroup">
-              <span class="p-inputgroup-addon">
-                <i class="pi pi-unlock"></i>
-              </span>
-              <InputText id="inputtext" type="text" v-model="new_password" placeholder="New password" />
+      <div class="field mb-4" style="margin-top: 1rem">
+        <label for="nickname" class="font-medium" style="padding-left: 0.25rem">Факультет</label>
+        <div class="p-inputgroup">
+          <span class="p-inputgroup-addon">
+            <i class="pi pi-briefcase"></i>
+          </span>
+          <InputText placeholder="Информационных сетей и систем" />
+        </div>
+      </div>
+      <div class="d-flex bd-highlight">
+        <div class="flex-grow-1 bd-highlight">
+          <div class="p-fluid p-grid">
+            <div class="p-field p-col-12" style="padding-right: 2rem">
+              <label for="nickname" class="font-medium" style="padding-left: 0.25rem">Старый пароль</label>
+              <div class="p-inputgroup">
+                <span class="p-inputgroup-addon">
+                  <i class="pi pi-lock"></i>
+                </span>
+                <InputText id="inputtext" type="text" placeholder="Pasword" v-model="user.password" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="flex-grow-1 bd-highlight">
+          <div class="p-fluid p-grid">
+            <div class="p-field p-col-12" style="padding-left: 2rem">
+              <label for="nickname" class="font-medium" style="padding-left: 0.25rem">Новый пароль</label>
+              <div class="p-inputgroup">
+                <span class="p-inputgroup-addon">
+                  <i class="pi pi-unlock"></i>
+                </span>
+                <InputText id="inputtext" type="text" placeholder="New password" v-model="alterUserDto.oldPassword" />
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="d-flex flex-row-reverse" style="margin-top: 2rem">
-      <Button label="Сохранить" class="p-button-outlined" style="color: #22223b" />
-    </div>
+      <div class="d-flex flex-row-reverse" style="margin-top: 2rem">
+        <Button
+          label="Сохранить"
+          type="submit"
+          class="p-button-outlined"
+          style="color: #22223b"
+          :disable="isEnableAlterButton"
+          :disabled="v$.$invalid || !isEnableAlterButton"
+        />
+      </div>
+    </form>
   </div>
 </template>
 
