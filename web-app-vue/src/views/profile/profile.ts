@@ -11,6 +11,7 @@ import { MutationTypes } from '@/store/mutations';
 import { storeModule } from '@/store/store-manager/store.constants';
 import { defineComponent } from 'vue';
 import { required } from '@vuelidate/validators';
+import { TemplateDto } from '@/interfaces/swagger/templateDto';
 
 export default defineComponent({
   validations() {
@@ -23,9 +24,10 @@ export default defineComponent({
       faculty: 'Software Engineering',
       isRememberMe: true,
       messages: [] as any[], //сообщения пользователю об ошибке
-      user: [] as UserDto,
-      alterUserDto: [] as unknown as AlterUserDto,
+      user: {} as UserDto,
+      alterUserDto: {} as unknown as AlterUserDto,
       isEnableAlterButton: true,
+      userTemplateDto: {} as TemplateDto,
     };
   },
   components: {},
@@ -39,7 +41,7 @@ export default defineComponent({
       if (!isFormValid) {
         return;
       }
-      this.getUserProfile();
+      this.AlterUser();
     },
 
     getUserProfile(): void {
@@ -57,13 +59,9 @@ export default defineComponent({
     },
 
     AlterUser(): void {
+      this.user.templateDefault = this.userTemplateDto;
       this.alterUserDto = this.user as AlterUserDto;
-      this.isEnableAlterButton = false;
-      if (this.alterUserDto.oldPassword == null) {
-        this.alterUserDto.oldPassword = this.user?.password ?? '';
-      }
       this.hideAlert();
-      this.alterUserDto.oldPassword;
       if (this.currentUser?.id)
         this.alter_user(this.alterUserDto).then(({ data, status }: { data: string | UserDto; status: number }) => {
           if (status != 200) {
@@ -77,9 +75,6 @@ export default defineComponent({
 
     loginIn(): void {
       this.hideAlert();
-
-      this.alterUserDto.oldPassword;
-
       //отправка запроса к сервера на авторизацию
       this.authorization({
         login: this.user.login ?? '',
@@ -104,7 +99,7 @@ export default defineComponent({
         store.commit(MutationTypes.SET_CURRENT_USER, { user: user, isSession: this.isRememberMe });
         Api.instance.authorize(user.token!);
         this.isEnableAlterButton = true;
-        this.$router.push('/');
+        this.$router.push('/profile');
       }
     },
 

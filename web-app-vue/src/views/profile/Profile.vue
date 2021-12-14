@@ -39,7 +39,7 @@
           <div class="p-fluid p-grid">
             <div class="p-field p-col-12" style="padding-left: 2rem">
               <label for="nickname" class="font-medium" style="padding-left: 0.25rem">Группа</label>
-              <InputText id="inputtext" type="text" placeholder="ИКПИ: " />
+              <InputText id="inputtext" type="text" placeholder="ИКПИ: " v-model="userTemplateDto.groupName" />
             </div>
           </div>
         </div>
@@ -50,7 +50,7 @@
           <span class="p-inputgroup-addon">
             <i class="pi pi-briefcase"></i>
           </span>
-          <InputText placeholder="Информационных сетей и систем" />
+          <InputText id="inputtext" type="text" placeholder="Информационных сетей и систем" v-model="userTemplateDto.faculty" />
         </div>
       </div>
       <div class="d-flex bd-highlight">
