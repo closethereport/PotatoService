@@ -61,6 +61,7 @@ export default defineComponent({
         this.Register({
           login: component.login,
           password: component.password,
+          email: component.email,
         }).then(({ data, status }: { data: string | UserDto; status: number }) => {
           if (status == 200) {
             this.authorization({

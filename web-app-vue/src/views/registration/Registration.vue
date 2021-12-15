@@ -11,6 +11,11 @@
       <Message style="margin-top: -70px" v-for="msg of messages" :severity="msg.severity" :key="msg.id">{{ msg.content }}</Message>
     </transition-group>
 
+    <div data-cy="HeaderText_LoginHeader" class="display-6 text-center">Registration</div>
+
+    <div class="text-center">
+      <small class="text-muted mt-2">PT is good</small>
+    </div>
     <div class="d-flex justify-content-center mt-5">
       <form class="p-fluid">
         <div class="p-field">

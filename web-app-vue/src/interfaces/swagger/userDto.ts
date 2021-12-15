@@ -11,11 +11,11 @@
  */
 import { TemplateDto } from './templateDto';
 
-export interface UserDto { 
-    id?: number;
-    fullName?: string;
-    login?: string;
-    password?: string;
-    email?: string;
-    templateDefault?: TemplateDto;
+export interface UserDto {
+  id?: number;
+  fullName?: string;
+  login?: string;
+  password?: string;
+  email?: string;
+  templateDefault?: TemplateDto;
 }
