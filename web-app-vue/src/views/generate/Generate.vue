@@ -1,5 +1,5 @@
 <template>
-  <Dialog header="Выбор шаблона" v-model:visible="displayTemplates" :style="{ width: '50vw' }">
+  <Dialog header="Выбор шаблона" v-model:visible="displayTemplates" :style="{ width: '80vw' }">
     <TemplateDelectDialog @selected="fillTemplatesPreset" />
   </Dialog>
 

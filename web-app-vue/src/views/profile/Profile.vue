@@ -9,7 +9,7 @@
   <div class="container p-5">
     <form @submit.prevent="handleSubmit(!v$.$invalid)">
       <div class="field">
-        <label for="nickname" class="font-medium" style="padding-left: 0.25rem">Login</label>
+        <label for="nickname" class="font-medium" style="padding-left: 0.25rem">Логин</label>
         <div class="p-inputgroup">
           <span class="p-inputgroup-addon">
             <i class="pi pi-user"></i>
@@ -39,7 +39,7 @@
           <div class="p-fluid p-grid">
             <div class="p-field p-col-12" style="padding-left: 2rem">
               <label for="nickname" class="font-medium" style="padding-left: 0.25rem">Группа</label>
-              <InputText id="inputtext" type="text" placeholder="ИКПИ: " v-model="userTemplateDto.groupName" />
+              <InputText id="inputtext" type="text" placeholder="Группа " v-model="userTemplateDto.groupName" />
             </div>
           </div>
         </div>

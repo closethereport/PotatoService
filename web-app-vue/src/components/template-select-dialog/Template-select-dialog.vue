@@ -8,13 +8,13 @@
     scrollHeight="flex"
     :loading="loading"
   >
-    <Column field="faculty" header="faculty" style="min-width: 200px"></Column>
-    <Column field="department" header="department" style="min-width: 200px"></Column>
-    <Column field="jobName" header="jobName" style="min-width: 200px"></Column>
-    <Column field="lessonName" header="lessonName" style="min-width: 200px"></Column>
-    <Column field="fullNameTeacher" header="fullNameTeacher" style="min-width: 200px"></Column>
-    <Column field="courseNumber" header="courseNumber" style="min-width: 200px"></Column>
-    <Column field="groupName" header="groupName" style="min-width: 200px"></Column>
+    <Column field="faculty" header="Факультет" style="min-width: 200px"></Column>
+    <Column field="department" header="Кафедра" style="min-width: 200px"></Column>
+    <Column field="jobName" header="Тип работы" style="min-width: 200px"></Column>
+    <Column field="lessonName" header="Дисциплина" style="min-width: 200px"></Column>
+    <Column field="fullNameTeacher" header="Ф.И.О преподователя" style="min-width: 200px"></Column>
+    <Column field="courseNumber" header="Курс" style="min-width: 200px"></Column>
+    <Column field="groupName" header="Группа" style="min-width: 200px"></Column>
   </DataTable>
 
   <div class="d-flex justify-content-end m-2"><Button @click="select()" label="Заполнить из шаблона" class="p-button-sm" /></div>

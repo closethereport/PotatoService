@@ -24,7 +24,11 @@ export default defineComponent({
       faculty: 'Software Engineering',
       isRememberMe: true,
       messages: [] as any[], //сообщения пользователю об ошибке
-      user: {} as UserDto,
+      user: {
+        login: 'admin',
+        email: 'admin@admin.com',
+        fullName: 'admin admin',
+      } as UserDto,
       alterUserDto: {} as unknown as AlterUserDto,
       isEnableAlterButton: true,
       userTemplateDto: {} as TemplateDto,
