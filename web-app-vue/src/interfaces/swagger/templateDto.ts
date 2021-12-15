@@ -10,13 +10,13 @@
  * Do not edit the class manually.
  */
 
-export interface TemplateDto { 
-    faculty?: string;
-    department?: string;
-    jobName?: string;
-    subject?: string;
-    lessonName?: string;
-    fullNameTeacher?: string;
-    courseNumber?: string;
-    groupName?: string;
+export interface TemplateDto {
+  faculty?: string;
+  department?: string;
+  jobName?: string;
+  subject?: string;
+  lessonName?: string;
+  fullNameTeacher?: string;
+  courseNumber?: string;
+  groupName?: string;
 }

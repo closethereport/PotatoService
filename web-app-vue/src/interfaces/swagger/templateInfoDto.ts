@@ -10,15 +10,15 @@
  * Do not edit the class manually.
  */
 
-export interface TemplateInfoDto { 
-    faculty?: string;
-    department?: string;
-    jobName?: string;
-    subject?: string;
-    lessonName?: string;
-    fullNameTeacher?: string;
-    courseNumber?: string;
-    groupName?: string;
-    id?: number;
-    userId?: number;
+export interface TemplateInfoDto {
+  faculty?: string;
+  department?: string;
+  jobName?: string;
+  subject?: string;
+  lessonName?: string;
+  fullNameTeacher?: string;
+  courseNumber?: string;
+  groupName?: string;
+  id?: number;
+  userId?: number;
 }

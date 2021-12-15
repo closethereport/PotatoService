@@ -2,7 +2,7 @@
   <div class="header-container">
     <div class="px-4 py-8 md:px-6 lg:px-8">
       <div class="text-700 text-center">
-        <div class="text-white font-bold text-5xl mb-3">Наша команда</div>
+        <div class="text-white font-bold text-5xl mb-3">Разработчики</div>
       </div>
     </div>
   </div>
